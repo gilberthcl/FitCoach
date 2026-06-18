@@ -1,0 +1,96 @@
+--- a/index.html
++++ b/index.html
+@@ -5735,6 +5735,17 @@
+       <div style="font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.5">Clave API de Anthropic (Claude) — necesaria para generar workouts con IA.</div>
+       <input type="password" class="prof-apikey-input" id="prof-apikey-input" placeholder="sk-ant-..." oninput="saveApiKey()">
+       <button class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%" onclick="testApiKey()">Verificar clave API</button>
++      <div class="prof-section-title" style="margin-top:18px">🔄 Actualizaciones</div>
++      <div style="font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.5">
++        Versión instalada: <strong id="app-version">—</strong>
++      </div>
++      <button class="btn btn-secondary" style="width:100%;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px" onclick="checkForUpdate()">
++        <span style="font-size:18px">🔄</span>
++        <div style="text-align:left">
++          <div style="font-weight:700;font-size:14px">Buscar actualizaciones</div>
++          <div style="font-size:11px;color:var(--text3);margin-top:1px">Descarga e instala la última versión</div>
++        </div>
++      </button>
+     </div>
+     <div class="prof-section" style="display:flex;flex-direction:column;gap:10px">
+       <button class="btn btn-ghost btn-lg" onclick="showWeightModal()">📊 Registrar peso hoy</button>
+@@ -5936,13 +5947,65 @@
+ 
+ 
+ <script>
++// ─── APP VERSION + AUTO-UPDATE ───
++var APP_VERSION = 'v3';
++(function(){ var el = document.getElementById('app-version'); if(el) el.textContent = APP_VERSION; })();
++
++var swRegistration = null;
++var _reloading = false;
++
+ if('serviceWorker' in navigator){
++  // When a new service worker takes control, reload once to show the new version.
++  navigator.serviceWorker.addEventListener('controllerchange', function(){
++    if(_reloading) return; _reloading = true;
++    window.location.reload();
++  });
++
+   window.addEventListener('load', function(){
+-    navigator.serviceWorker.register('sw.js')
+-      .then(function(reg){ console.log('SW registered'); })
++    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
++      .then(function(reg){
++        swRegistration = reg;
++        reg.addEventListener('updatefound', function(){
++          var nw = reg.installing;
++          if(!nw) return;
++          nw.addEventListener('statechange', function(){
++            if(nw.state === 'installed' && navigator.serviceWorker.controller){
++              if(typeof showToast === 'function') showToast('✨ Nueva versión disponible, actualizando...');
++            }
++          });
++        });
++      })
+       .catch(function(err){ console.log('SW error:', err); });
++
++    // Silently check for a newer version on every launch.
++    setTimeout(function(){ if(swRegistration){ swRegistration.update().catch(function(){}); } }, 3000);
+   });
+ }
++
++// Manual "Buscar actualizaciones" button.
++async function checkForUpdate(){
++  if(!('serviceWorker' in navigator)){
++    if(typeof showToast==='function') showToast('Tu navegador no soporta actualizaciones');
++    return;
++  }
++  if(typeof showToast==='function') showToast('Buscando actualización...');
++  try{
++    var reg = swRegistration || await navigator.serviceWorker.getRegistration();
++    if(!reg){ if(typeof showToast==='function') showToast('No hay versión instalada aún'); return; }
++    await reg.update();
++    setTimeout(function(){
++      if(reg.installing || reg.waiting){
++        if(typeof showToast==='function') showToast('Actualización encontrada, instalando...');
++        // controllerchange will reload automatically; this is a fallback.
++        setTimeout(function(){ if(!_reloading){ _reloading = true; window.location.reload(); } }, 2500);
++      } else {
++        if(typeof showToast==='function') showToast('✓ Ya tienes la última versión (' + APP_VERSION + ')');
++      }
++    }, 1500);
++  }catch(e){
++    if(typeof showToast==='function') showToast('Error al actualizar: ' + e.message);
++  }
++}
+ </script>
+ </body>
+ </html>
+--- a/sw.js
++++ b/sw.js
+@@ -1,4 +1,4 @@
+-const CACHE = 'fitcoach-v2';
++const CACHE = 'fitcoach-v3';
+ const ASSETS = [
+   './index.html',
+   './manifest.json',
