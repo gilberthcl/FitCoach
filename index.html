@@ -1266,13 +1266,60 @@ body{
     <div class="wm-sub" id="wm-sub">Registro mensual de peso. Claude recalculará tu IMC, ajustará la intensidad y adaptará el programa del próximo mes.</div>
     <input type="number" class="wm-input" id="wm-input" placeholder="98.0" step="0.1" min="30" max="300">
     <button class="btn btn-primary btn-lg" onclick="saveMonthlyWeight()">Guardar peso</button>
-    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="closeWeightModal()">Recordármelo después</button>
+    <button class="btn btn-ghost btn-lg" id="wm-later" style="margin-top:8px" onclick="closeWeightModal()">Recordármelo después</button>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════ PIN -->
+<style>
+.ob-top{display:flex;align-items:center;gap:12px;padding:16px 20px 4px;width:100%;max-width:480px;margin:0 auto}
+.ob-back{background:none;border:none;color:var(--text2);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.ob-back[disabled]{opacity:0;pointer-events:none}
+.ob-progress{flex:1;height:6px;background:var(--surface2);border-radius:6px;overflow:hidden}
+.ob-progress-bar{height:100%;width:0;background:var(--accent);border-radius:6px;transition:width .3s ease}
+.ob-body{flex:1;width:100%;max-width:480px;margin:0 auto;padding:18px 20px;overflow-y:auto}
+.ob-icon-hero{width:64px;height:64px;color:var(--accent);margin-bottom:18px}
+.ob-h{font-size:25px;font-weight:800;letter-spacing:-.5px;line-height:1.2;margin-bottom:8px}
+.ob-sub{font-size:14px;color:var(--text2);line-height:1.5;margin-bottom:22px}
+.ob-field{margin-bottom:14px}
+.ob-input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:16px;color:var(--text);font-size:17px;outline:none;transition:border-color .15s}
+.ob-input:focus{border-color:var(--accent)}
+.ob-suffix{position:relative}
+.ob-suffix .u{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;pointer-events:none}
+.ob-opt{display:flex;align-items:center;gap:14px;width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:15px 16px;margin-bottom:10px;cursor:pointer;text-align:left;color:var(--text);transition:all .15s}
+.ob-opt:active{transform:scale(.99)}
+.ob-opt.sel{border-color:var(--accent);background:var(--accent-glow)}
+.ob-opt-ic{width:26px;height:26px;color:var(--accent);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ob-opt-tx{flex:1}
+.ob-opt-tt{font-weight:700;font-size:15px}
+.ob-opt-ds{font-size:12px;color:var(--text3);margin-top:2px}
+.ob-opt-check{width:20px;height:20px;color:var(--accent);opacity:0;flex-shrink:0}
+.ob-opt.sel .ob-opt-check{opacity:1}
+.ob-days{display:flex;gap:7px;flex-wrap:wrap;justify-content:space-between}
+.ob-day{flex:1;min-width:40px;aspect-ratio:1;border:1.5px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;cursor:pointer;transition:all .15s}
+.ob-day.sel{border-color:var(--accent);background:var(--accent);color:#fff}
+.ob-foot{width:100%;max-width:480px;margin:0 auto;padding:14px 20px calc(20px + env(safe-area-inset-bottom))}
+.ob-err{color:var(--red);font-size:13px;margin-top:10px;min-height:16px}
+.ob-pin-row{display:flex;gap:10px;justify-content:center;margin:10px 0 4px}
+.ob-pin-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--border)}
+.ob-pin-dot.on{background:var(--accent);border-color:var(--accent)}
+.ob-sum-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px}
+.ob-sum-row .k{color:var(--text2)} .ob-sum-row .v{font-weight:700;text-align:right}
+</style>
+<div id="screen-onboarding" class="screen" style="justify-content:flex-start">
+  <div class="ob-top">
+    <button class="ob-back" id="ob-back" onclick="obPrev()" disabled></button>
+    <div class="ob-progress"><div class="ob-progress-bar" id="ob-progress-bar"></div></div>
+  </div>
+  <div class="ob-body" id="ob-body"></div>
+  <div class="ob-foot">
+    <div class="ob-err" id="ob-err"></div>
+    <button class="btn btn-primary" id="ob-next" style="width:100%;padding:16px;font-size:16px" onclick="obNext()">Continuar</button>
+  </div>
+</div>
+
 <div id="screen-pin" class="screen">
-  <div class="pin-logo">🏋️</div>
+  <div class="pin-logo" id="pin-logo"></div>
   <div class="pin-title">FitCoach AI</div>
   <div class="pin-sub">Ingresa tu PIN de 6 dígitos</div>
   <div class="pin-dots" id="pin-dots">
@@ -2242,7 +2289,7 @@ function updatePinDots(){
 }
 
 function checkPin(){
-  if(pinEntry === CORRECT_PIN){
+  if(profile && profile.pin && pinEntry === profile.pin){
     bootApp();
   } else {
     document.getElementById('pin-error').textContent = 'PIN incorrecto. Inténtalo de nuevo.';
@@ -2259,24 +2306,32 @@ function checkPin(){
 // INIT
 // ═══════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function(){
-  sessions = load('sessions', []);
-  weightLog = load('weightLog', []);
+  var logo = document.getElementById('pin-logo'); if(logo) logo.innerHTML = icon('dumbbell',54);
   profile = load('profile', null);
 
-  if(!profile){
-    profile = Object.assign({}, GILBERTH_DEFAULTS, { joinDate: new Date().toISOString() });
-    weightLog = [{ date: new Date().toISOString(), weight: 98, note: 'Peso inicial' }];
-    store('profile', profile);
-    store('weightLog', weightLog);
+  // No onboarded profile -> wipe old data and run the onboarding wizard
+  if(!profile || !profile.onboardingComplete){
+    obClearData();
+    sessions = [];
+    weightLog = [];
+    profile = null;
+    showScreen('onboarding');
+    obStart();
+    return;
   }
+
+  sessions = load('sessions', []);
+  weightLog = load('weightLog', []);
+
   // Restore API key from backup if missing
   if(!profile.apiKey){
     var backup = localStorage.getItem('fc_apikey_backup');
     if(backup){ profile.apiKey = backup; store('profile', profile); }
   }
 
-  // Always start at PIN
-  showScreen('pin');
+  // PIN is optional
+  if(profile.pinEnabled && profile.pin){ showScreen('pin'); }
+  else { bootApp(); }
 });
 
 function bootApp(){
@@ -3055,9 +3110,12 @@ async function generateWorkouts(dayData){
   var prompt = [
     'You are an elite personal trainer and exercise physiologist specializing in fat loss for overweight adults. You create precise, science-based workout programs.',
     '',
-    '## ATHLETE: GILBERTH',
-    'Height: 170cm | Current Weight: '+(profile.currentWeight||98)+'kg | Start Weight: '+(profile.startWeight||98)+'kg | Goal: '+(profile.goalWeight||75)+'kg',
+    '## ATHLETE: '+((profile.name||'Atleta').toUpperCase()),
+    'Gender: '+(profile.gender||'-')+' | Age: '+(profile.age||'-')+' | Height: '+(profile.height||170)+'cm',
+    'Current Weight: '+(profile.currentWeight||98)+'kg | Start Weight: '+(profile.startWeight||98)+'kg | Goal: '+(profile.goalWeight||75)+'kg',
     'BMI: '+bmi.toFixed(1)+' ('+bmiCat.label+') | Weight lost: '+weightLost.toFixed(1)+'kg ('+pct+'% of goal) | Still needs to lose: '+kgToGoal.toFixed(1)+'kg',
+    'Primary goal: '+(profile.goal||'lose_weight')+' | Target session length: '+(profile.minutesPerSession||30)+' min',
+    'Injuries/limitations: '+((profile.injuries&&profile.injuries.length&&profile.injuries.join(',')!=='none')?profile.injuries.join(', '):'None')+' — avoid movements that stress these areas',
     'Program day: '+(profile.weekDay||1)+' | Days since start: '+daysSinceStart+' | Fitness level: '+(profile.level||'beginner'),
     '',
     '## PHYSICAL CONDITION STAGE',
@@ -3109,7 +3167,7 @@ async function generateWorkouts(dayData){
     '    "coachNote":"string"',
     '  }',
     ']}',
-    'Use EXACTLY the exercise names from the AVAILABLE EXERCISES list. All text in Spanish.',
+    'Use EXACTLY the exercise names from the AVAILABLE EXERCISES list. All text in Spanish. IMPORTANT: never use emojis or pictographic characters anywhere in the JSON.',
   ].join('\n');
 
   try {
@@ -3145,6 +3203,7 @@ async function generateWorkouts(dayData){
     var parsed = JSON.parse(jsonMatch[0]);
     var workouts = parsed.workouts || parsed;
     if(!Array.isArray(workouts)) workouts = [workouts];
+    workouts = deepStripEmoji(workouts);
 
     // Cache
     var bundle = { workouts: workouts, generatedAt: new Date().toISOString() };
@@ -3844,26 +3903,41 @@ function finishFeedback(){
 // ═══════════════════════════════════════════════════════════════
 // WEIGHT CHECK-IN
 // ═══════════════════════════════════════════════════════════════
+var weighInRequired = false;
 function checkMonthlyCheckin(){
   if(!weightLog.length) return;
   var last = new Date(weightLog[weightLog.length-1].date);
   var now = new Date();
   var daysDiff = (now - last) / 86400000;
   if(daysDiff >= 28){
+    weighInRequired = true;
     setTimeout(function(){ showWeightModal(); }, 1500);
   }
 }
 
 function showWeightModal(){
   document.getElementById('wm-input').value = profile.currentWeight||'';
+  var later = document.getElementById('wm-later');
+  var sub = document.getElementById('wm-sub');
+  if(weighInRequired){
+    if(later) later.style.display = 'none';
+    if(sub) sub.textContent = 'Ya pasó un mes. Registra tu peso para continuar; ajustaré la intensidad y el programa.';
+  } else {
+    if(later) later.style.display = '';
+    if(sub) sub.textContent = 'Registro de peso. Claude recalculará tu IMC, ajustará la intensidad y adaptará el programa.';
+  }
   document.getElementById('weight-modal').classList.add('active');
 }
-function closeWeightModal(){ document.getElementById('weight-modal').classList.remove('active'); }
+function closeWeightModal(){
+  if(weighInRequired){ if(typeof showToast==='function') showToast('Registra tu peso para continuar'); return; }
+  document.getElementById('weight-modal').classList.remove('active');
+}
 
 function saveMonthlyWeight(){
   var w = parseFloat(document.getElementById('wm-input').value);
   if(!w||w<30||w>300){ showToast('Ingresa un peso válido'); return; }
 
+  weighInRequired = false;
   weightLog.push({ date: new Date().toISOString(), weight: w, note: 'Check-in mensual' });
   store('weightLog', weightLog);
 
@@ -5947,8 +6021,232 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
 
 
 <script>
+// ═══════════════════════════════════════════════════════════════
+// ONBOARDING WIZARD
+// ═══════════════════════════════════════════════════════════════
+var OB_ICONS = {
+  back:'<polyline points="15 18 9 12 15 6"></polyline>',
+  user:'<circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path>',
+  ruler:'<rect x="3" y="8" width="18" height="8" rx="1"></rect><path d="M7 8v3M11 8v4M15 8v3"></path>',
+  scale:'<path d="M12 3v3"></path><circle cx="12" cy="13" r="8"></circle><path d="M12 13l3-4"></path>',
+  target:'<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.5"></circle>',
+  flame:'<path d="M12 3c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5-1-8z"></path>',
+  dumbbell:'<path d="M6 8v8M3 10v4M18 8v8M21 10v4M6 12h12"></path>',
+  activity:'<polyline points="3 12 8 12 11 4 14 20 17 12 21 12"></polyline>',
+  seed:'<path d="M12 21V10"></path><path d="M12 10c0-3 3-5 6-5 0 3-3 5-6 5z"></path><path d="M12 13c0-3-3-5-6-5 0 3 3 5 6 5z"></path>',
+  calendar:'<rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 3v4M16 3v4"></path>',
+  clock:'<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>',
+  shield:'<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"></path>',
+  sun:'<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path>',
+  lock:'<rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path>',
+  check:'<polyline points="20 6 9 17 4 12"></polyline>',
+  rocket:'<path d="M5 15c-1 1-2 4-2 4s3-1 4-2M9 11a8 8 0 0 1 11-7 8 8 0 0 1-7 11l-2 2-4-4z"></path><circle cx="14.5" cy="9.5" r="1.5"></circle>'
+};
+function icon(name, size){ size=size||24; return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+(OB_ICONS[name]||'')+'</svg>'; }
+
+// Strip emojis / pictographs from any string (safety net for AI output)
+function stripEmoji(s){
+  if(typeof s !== 'string') return s;
+  return s.replace(/[\u{1F000}-\u{1FAFF}\u{1F900}-\u{1F9FF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{2300}-\u{23FF}\u{FE00}-\u{FE0F}\u{2190}-\u{21FF}\u{200D}]/gu,'').replace(/[ \t]{2,}/g,' ').trim();
+}
+function deepStripEmoji(o){
+  if(typeof o === 'string') return stripEmoji(o);
+  if(Array.isArray(o)) return o.map(deepStripEmoji);
+  if(o && typeof o === 'object'){ for(var k in o){ if(Object.prototype.hasOwnProperty.call(o,k)) o[k]=deepStripEmoji(o[k]); } }
+  return o;
+}
+
+var OB_DAYS = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+var obState = { workoutDays:[], injuries:[], minutesPerSession:30, pinDigits:'', pinEnabled:false };
+var obIndex = 0;
+var OB_STEPS = [
+  { type:'welcome' },
+  { type:'text', key:'name', icon:'user', title:'¿Cómo te llamas?', sub:'Así personalizo tu experiencia.', placeholder:'Tu nombre' },
+  { type:'choice', key:'gender', icon:'user', title:'Sexo', sub:'Me ayuda a estimar tus necesidades calóricas.', options:[{v:'Hombre',t:'Hombre',ic:'user'},{v:'Mujer',t:'Mujer',ic:'user'},{v:'Otro',t:'Prefiero no decir',ic:'user'}] },
+  { type:'number', key:'age', icon:'user', title:'¿Qué edad tienes?', unit:'años', min:10, max:100 },
+  { type:'number', key:'height', icon:'ruler', title:'¿Cuánto mides?', unit:'cm', min:100, max:250 },
+  { type:'number', key:'currentWeight', icon:'scale', title:'¿Cuál es tu peso actual?', unit:'kg', min:30, max:300, dec:true },
+  { type:'number', key:'goalWeight', icon:'target', title:'¿Cuál es tu peso objetivo?', unit:'kg', min:30, max:300, dec:true },
+  { type:'choice', key:'goal', icon:'target', title:'¿Cuál es tu objetivo principal?', options:[{v:'lose_weight',t:'Perder peso',d:'Quemar grasa y reducir peso',ic:'flame'},{v:'tone',t:'Tonificar',d:'Definir y fortalecer el cuerpo',ic:'dumbbell'},{v:'fitness',t:'Fitness general',d:'Salud, energía y movilidad',ic:'activity'}] },
+  { type:'choice', key:'level', icon:'activity', title:'¿Cuál es tu nivel?', sub:'Para no hacer entrenamientos ni muy fáciles ni muy duros.', options:[{v:'beginner',t:'Principiante',d:'Poco o ningún ejercicio reciente',ic:'seed'},{v:'intermediate',t:'Intermedio',d:'Entreno de vez en cuando',ic:'activity'},{v:'advanced',t:'Avanzado',d:'Entreno con regularidad',ic:'flame'}] },
+  { type:'days', key:'workoutDays', icon:'calendar', title:'¿Qué días quieres entrenar?', sub:'Elige al menos un día.' },
+  { type:'choice', key:'minutesPerSession', icon:'clock', title:'¿Cuánto tiempo por sesión?', options:[{v:15,t:'15 minutos'},{v:30,t:'30 minutos'},{v:45,t:'45 minutos'},{v:60,t:'60 minutos'}] },
+  { type:'multi', key:'injuries', icon:'shield', title:'¿Alguna lesión o molestia?', sub:'Adaptaré los ejercicios. Puedes elegir varias.', noneKey:'none', options:[{v:'none',t:'Ninguna'},{v:'knees',t:'Rodillas'},{v:'back',t:'Espalda baja'},{v:'shoulders',t:'Hombros'},{v:'wrists',t:'Muñecas'}] },
+  { type:'choice', key:'activity', icon:'sun', title:'¿Cómo es tu día a día?', options:[{v:'sedentary',t:'Sedentario',d:'Trabajo de oficina, poco movimiento',ic:'sun'},{v:'active',t:'Activo',d:'De pie o en movimiento a menudo',ic:'activity'}] },
+  { type:'pin', key:'pin', icon:'lock', title:'¿Proteger con un PIN?', sub:'Opcional. Un PIN de 6 dígitos para abrir la app.' },
+  { type:'review', icon:'check', title:'Todo listo', sub:'Revisa tu perfil. Con esto crearé tus entrenamientos.' }
+];
+
+function obStart(){ obIndex = 0; obRender(); }
+
+function obSetErr(m){ var e=document.getElementById('ob-err'); if(e) e.textContent = m||''; }
+
+function obRender(){
+  var step = OB_STEPS[obIndex];
+  var body = document.getElementById('ob-body');
+  var bar = document.getElementById('ob-progress-bar');
+  var back = document.getElementById('ob-back');
+  var next = document.getElementById('ob-next');
+  obSetErr('');
+  bar.style.width = Math.round((obIndex/(OB_STEPS.length-1))*100) + '%';
+  back.disabled = (obIndex === 0);
+  back.innerHTML = icon('back',22);
+  next.textContent = step.type==='welcome' ? 'Empezar' : (step.type==='review' ? 'Crear mi plan' : 'Continuar');
+
+  var html = '';
+  if(step.type === 'welcome'){
+    html = '<div style="text-align:center;padding-top:30px">'
+      + '<div class="ob-icon-hero" style="margin:0 auto 22px;width:72px;height:72px">'+icon('rocket',72)+'</div>'
+      + '<div class="ob-h" style="font-size:28px">Bienvenido a FitCoach AI</div>'
+      + '<div class="ob-sub">Vamos a crear tu perfil para generar entrenamientos personalizados con IA. Solo toma un minuto.</div>'
+      + '</div>';
+  } else {
+    html += '<div class="ob-icon-hero">'+icon(step.icon,52)+'</div>';
+    html += '<div class="ob-h">'+step.title+'</div>';
+    if(step.sub) html += '<div class="ob-sub">'+step.sub+'</div>';
+    if(step.type === 'text'){
+      html += '<div class="ob-field"><input class="ob-input" id="ob-in" type="text" placeholder="'+(step.placeholder||'')+'" value="'+(obState[step.key]||'')+'" autocomplete="off"></div>';
+    } else if(step.type === 'number'){
+      html += '<div class="ob-field ob-suffix"><input class="ob-input" id="ob-in" type="number" inputmode="'+(step.dec?'decimal':'numeric')+'" value="'+(obState[step.key]!=null?obState[step.key]:'')+'"><span class="u">'+step.unit+'</span></div>';
+    } else if(step.type === 'choice'){
+      step.options.forEach(function(o){
+        var sel = (String(obState[step.key])===String(o.v)) ? ' sel' : '';
+        html += '<button class="ob-opt'+sel+'" onclick="obChoose(\''+step.key+'\','+(typeof o.v==='number'?o.v:'\''+o.v+'\'')+')">'
+          + (o.ic?'<span class="ob-opt-ic">'+icon(o.ic,24)+'</span>':'')
+          + '<span class="ob-opt-tx"><span class="ob-opt-tt">'+o.t+'</span>'+(o.d?'<span class="ob-opt-ds">'+o.d+'</span>':'')+'</span>'
+          + '<span class="ob-opt-check">'+icon('check',20)+'</span></button>';
+      });
+    } else if(step.type === 'multi'){
+      step.options.forEach(function(o){
+        var sel = (obState[step.key].indexOf(o.v)>=0) ? ' sel' : '';
+        html += '<button class="ob-opt'+sel+'" onclick="obToggleMulti(\''+step.key+'\',\''+o.v+'\',\''+(step.noneKey||'')+'\')">'
+          + '<span class="ob-opt-tx"><span class="ob-opt-tt">'+o.t+'</span></span>'
+          + '<span class="ob-opt-check">'+icon('check',20)+'</span></button>';
+      });
+    } else if(step.type === 'days'){
+      html += '<div class="ob-days">';
+      for(var d=0; d<7; d++){
+        var s = obState.workoutDays.indexOf(d)>=0 ? ' sel' : '';
+        html += '<div class="ob-day'+s+'" onclick="obToggleDay('+d+')">'+OB_DAYS[d]+'</div>';
+      }
+      html += '</div>';
+    } else if(step.type === 'pin'){
+      html += '<button class="ob-opt'+(!obState.pinEnabled?' sel':'')+'" onclick="obSetPinEnabled(false)"><span class="ob-opt-tx"><span class="ob-opt-tt">Sin PIN</span><span class="ob-opt-ds">Abrir la app directamente</span></span><span class="ob-opt-check">'+icon('check',20)+'</span></button>';
+      html += '<button class="ob-opt'+(obState.pinEnabled?' sel':'')+'" onclick="obSetPinEnabled(true)"><span class="ob-opt-ic">'+icon('lock',24)+'</span><span class="ob-opt-tx"><span class="ob-opt-tt">Usar un PIN</span><span class="ob-opt-ds">Proteger con 6 dígitos</span></span><span class="ob-opt-check">'+icon('check',20)+'</span></button>';
+      html += '<div id="ob-pin-area" style="display:'+(obState.pinEnabled?'block':'none')+';margin-top:14px">';
+      html += '<div class="ob-pin-row" id="ob-pin-dots"></div>';
+      html += '<div class="ob-field ob-suffix" style="margin-top:10px"><input class="ob-input" id="ob-in" type="tel" inputmode="numeric" maxlength="6" placeholder="------" oninput="obPinInput(this.value)" value="'+(obState.pinDigits||'')+'" style="text-align:center;letter-spacing:8px"></div>';
+      html += '</div>';
+    } else if(step.type === 'review'){
+      var r = obState;
+      var rows = [
+        ['Nombre', r.name||'-'],
+        ['Sexo', r.gender||'-'],
+        ['Edad', (r.age||'-')+' años'],
+        ['Estatura', (r.height||'-')+' cm'],
+        ['Peso actual', (r.currentWeight||'-')+' kg'],
+        ['Peso objetivo', (r.goalWeight||'-')+' kg'],
+        ['Objetivo', ({lose_weight:'Perder peso',tone:'Tonificar',fitness:'Fitness general'})[r.goal]||'-'],
+        ['Nivel', ({beginner:'Principiante',intermediate:'Intermedio',advanced:'Avanzado'})[r.level]||'-'],
+        ['Días/semana', r.workoutDays.length],
+        ['Min/sesión', r.minutesPerSession+' min'],
+        ['Lesiones', (r.injuries.length && r.injuries.join(',')!=='none') ? r.injuries.length+' indicada(s)' : 'Ninguna'],
+        ['PIN', r.pinEnabled?'Activado':'Desactivado']
+      ];
+      rows.forEach(function(x){ html += '<div class="ob-sum-row"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'; });
+    }
+  }
+  body.innerHTML = html;
+  body.scrollTop = 0;
+  if(step.type==='pin' && obState.pinEnabled) obRenderPinDots();
+  var inp = document.getElementById('ob-in');
+  if(inp && (step.type==='text'||step.type==='number')) setTimeout(function(){ try{ inp.focus(); }catch(e){} }, 80);
+}
+
+function obChoose(key, val){ obState[key] = val; obRender(); }
+function obToggleDay(d){
+  var i = obState.workoutDays.indexOf(d);
+  if(i>=0) obState.workoutDays.splice(i,1); else obState.workoutDays.push(d);
+  obState.workoutDays.sort(function(a,b){return a-b;});
+  obRender();
+}
+function obToggleMulti(key, val, noneKey){
+  var arr = obState[key];
+  if(noneKey && val===noneKey){ obState[key] = (arr.indexOf(noneKey)>=0)?[]:[noneKey]; obRender(); return; }
+  var ni = arr.indexOf(noneKey);
+  if(ni>=0) arr.splice(ni,1);
+  var i = arr.indexOf(val);
+  if(i>=0) arr.splice(i,1); else arr.push(val);
+  obRender();
+}
+function obSetPinEnabled(on){ obState.pinEnabled = on; if(!on) obState.pinDigits=''; obRender(); }
+function obPinInput(v){ obState.pinDigits = (v||'').replace(/\D/g,'').slice(0,6); obRenderPinDots(); }
+function obRenderPinDots(){
+  var el = document.getElementById('ob-pin-dots'); if(!el) return;
+  var h=''; for(var i=0;i<6;i++){ h += '<div class="ob-pin-dot'+(i<obState.pinDigits.length?' on':'')+'"></div>'; }
+  el.innerHTML = h;
+}
+
+function obNext(){
+  var step = OB_STEPS[obIndex];
+  if(step.type==='text'){
+    var v=(document.getElementById('ob-in').value||'').trim();
+    if(!v){ obSetErr('Por favor escribe tu nombre.'); return; }
+    obState[step.key]=v.slice(0,30);
+  } else if(step.type==='number'){
+    var n=parseFloat(document.getElementById('ob-in').value);
+    if(isNaN(n)||n<step.min||n>step.max){ obSetErr('Ingresa un valor entre '+step.min+' y '+step.max+'.'); return; }
+    obState[step.key]= step.dec ? Math.round(n*10)/10 : Math.round(n);
+  } else if(step.type==='choice'){
+    if(obState[step.key]==null){ obSetErr('Elige una opción para continuar.'); return; }
+  } else if(step.type==='days'){
+    if(!obState.workoutDays.length){ obSetErr('Elige al menos un día.'); return; }
+  } else if(step.type==='multi'){
+    if(!obState[step.key].length) obState[step.key]=[step.noneKey||'none'];
+  } else if(step.type==='pin'){
+    if(obState.pinEnabled && obState.pinDigits.length!==6){ obSetErr('El PIN debe tener 6 dígitos.'); return; }
+  }
+  if(obIndex < OB_STEPS.length-1){ obIndex++; obRender(); }
+  else obFinish();
+}
+function obPrev(){ if(obIndex>0){ obIndex--; obRender(); } }
+
+function obFinish(){
+  var r = obState;
+  var existingKey = '';
+  try { existingKey = localStorage.getItem('fc_apikey_backup') || ''; } catch(e){}
+  profile = {
+    name: r.name, gender: r.gender, age: r.age, height: r.height,
+    startWeight: r.currentWeight, currentWeight: r.currentWeight, goalWeight: r.goalWeight,
+    goal: r.goal, level: r.level,
+    workoutDays: r.workoutDays.slice(), workoutDaysPerWeek: r.workoutDays.length,
+    minutesPerSession: r.minutesPerSession, injuries: r.injuries.slice(), activity: r.activity,
+    pin: r.pinEnabled ? r.pinDigits : '', pinEnabled: !!r.pinEnabled,
+    onboardingComplete: true, joinDate: new Date().toISOString(),
+    totalSessions: 0, streak: 0, lastSessionDate: null,
+    apiKey: existingKey, lastFeedback: 'right', weekDay: 1,
+    lastWeekPlan: null, weekPlanDate: null
+  };
+  sessions = [];
+  weightLog = [{ date: new Date().toISOString(), weight: r.currentWeight, note: 'Peso inicial' }];
+  store('profile', profile);
+  store('sessions', sessions);
+  store('weightLog', weightLog);
+  bootApp();
+}
+
+// Wipe all app data (fresh start) except the API-key backup
+function obClearData(){
+  try {
+    var rm = [];
+    for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(k && k.indexOf('fc_')===0 && k!=='fc_apikey_backup') rm.push(k); }
+    rm.forEach(function(k){ localStorage.removeItem(k); });
+  } catch(e){}
+}
+</script>
+<script>
 // ─── APP VERSION + AUTO-UPDATE ───
-var APP_VERSION = 'v3';
+var APP_VERSION = 'v4';
 (function(){ var el = document.getElementById('app-version'); if(el) el.textContent = APP_VERSION; })();
 
 var swRegistration = null;
