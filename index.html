@@ -1262,7 +1262,7 @@ body{
 <!-- WEIGHT CHECK-IN MODAL -->
 <div class="weight-modal" id="weight-modal">
   <div class="weight-modal-card">
-    <div class="wm-title">📊 Check-in mensual</div>
+    <div class="wm-title"> Check-in mensual</div>
     <div class="wm-sub" id="wm-sub">Registro mensual de peso. Claude recalculará tu IMC, ajustará la intensidad y adaptará el programa del próximo mes.</div>
     <input type="number" class="wm-input" id="wm-input" placeholder="98.0" step="0.1" min="30" max="300">
     <button class="btn btn-primary btn-lg" onclick="saveMonthlyWeight()">Guardar peso</button>
@@ -1305,6 +1305,9 @@ body{
 .ob-pin-dot.on{background:var(--accent);border-color:var(--accent)}
 .ob-sum-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px}
 .ob-sum-row .k{color:var(--text2)} .ob-sum-row .v{font-weight:700;text-align:right}
+.wc-icon:empty,.sg-icon:empty,.today-meta-chip:empty,.fb-opt-icon:empty{display:none}
+.nav-icon svg,.prof-avatar svg{display:block}
+.prof-avatar svg{color:var(--accent)}
 </style>
 <div id="screen-onboarding" class="screen" style="justify-content:flex-start">
   <div class="ob-top">
@@ -1359,7 +1362,7 @@ body{
     <div class="home-stats">
       <div class="stat-pill">
         <div class="val" id="home-streak">0</div>
-        <div class="lbl">Racha 🔥</div>
+        <div class="lbl">Racha</div>
       </div>
       <div class="stat-pill">
         <div class="val" id="home-sessions">0</div>
@@ -1379,8 +1382,8 @@ body{
         <div class="today-card-title" id="today-title">Sesión del día</div>
         <div class="today-card-sub" id="today-sub">Claude va a generar tu entrenamiento personalizado según tu progreso.</div>
         <div class="today-card-meta" id="today-meta">
-          <div class="today-meta-chip">⏱ 30 min</div>
-          <div class="today-meta-chip" id="today-chip-level">🌱 Principiante</div>
+          <div class="today-meta-chip"> 30 min</div>
+          <div class="today-meta-chip" id="today-chip-level"> Principiante</div>
           <div class="today-meta-chip" id="today-chip-day">Día 1</div>
         </div>
         <button class="today-start-btn" id="today-start-btn" onclick="openWizard()">
@@ -1435,15 +1438,15 @@ body{
   <!-- Bottom nav -->
   <div class="bottom-nav">
     <button class="nav-item active" id="nav-home" onclick="navTo('home')">
-      <div class="nav-icon">🏠</div>
+      <div class="nav-icon"></div>
       <div class="nav-lbl">Inicio</div>
     </button>
     <button class="nav-item" id="nav-stats" onclick="navTo('stats')">
-      <div class="nav-icon">📊</div>
+      <div class="nav-icon"></div>
       <div class="nav-lbl">Stats</div>
     </button>
     <button class="nav-item" id="nav-profile" onclick="navTo('profile')">
-      <div class="nav-icon">👤</div>
+      <div class="nav-icon"></div>
       <div class="nav-lbl">Perfil</div>
     </button>
   </div>
@@ -1464,7 +1467,7 @@ body{
   <div class="player-wrap">
     <!-- Exercise image -->
     <div class="ex-visual" id="ex-visual">
-      <div class="ex-visual-fallback" id="ex-fallback">💪</div>
+      <div class="ex-visual-fallback" id="ex-fallback"></div>
       <img class="ex-visual-img" id="ex-img-a" style="display:none" alt="">
       <div class="ex-visual-overlay" id="ex-overlay">
         <span class="ex-phase-badge badge-main" id="ex-phase-badge">Principal</span>
@@ -1488,7 +1491,7 @@ body{
 
 <!-- ══════════════════════════════════════════════════════ FEEDBACK -->
 <div id="screen-feedback" class="screen">
-  <div class="fb-trophy">🏆</div>
+  <div class="fb-trophy"></div>
   <h1 class="fb-title">¡Sesión completada!</h1>
   <p class="fb-sub" id="fb-sub">Excelente trabajo. Cada sesión te acerca a tu meta.</p>
 
@@ -1501,7 +1504,7 @@ body{
   <div class="fb-sliders">
     <div class="fb-slider-block">
       <div class="fb-slider-label">
-        😤 Dificultad percibida
+        Dificultad percibida
         <span class="fb-slider-value" id="resist-val">5</span>
       </div>
       <div class="fb-slider-sub">¿Qué tan difícil se sintió? (1 = muy fácil · 10 = al límite)</div>
@@ -1511,7 +1514,7 @@ body{
     </div>
     <div class="fb-slider-block">
       <div class="fb-slider-label">
-        ❤️ ¿Te gustó?
+        ¿Te gustó?
         <span class="fb-slider-value" id="enjoy-val">5</span>
       </div>
       <div class="fb-slider-sub">¿Qué tan disfrutable fue? (1 = no me gustó · 10 = me encantó)</div>
@@ -1524,15 +1527,15 @@ body{
   <div class="fb-question">Resumen rápido</div>
   <div class="fb-options">
     <div class="fb-option" id="fb-opt-easy" onclick="selectFeedback('easy')">
-      <div class="fb-opt-icon">😊</div>
+      <div class="fb-opt-icon"></div>
       <div><div class="fb-opt-label">Muy fácil</div><div class="fb-opt-sub">Sube la intensidad la próxima</div></div>
     </div>
     <div class="fb-option" id="fb-opt-right" onclick="selectFeedback('right')">
-      <div class="fb-opt-icon">💪</div>
+      <div class="fb-opt-icon"></div>
       <div><div class="fb-opt-label">Perfecto</div><div class="fb-opt-sub">Nivel ideal para mi condición</div></div>
     </div>
     <div class="fb-option" id="fb-opt-hard" onclick="selectFeedback('hard')">
-      <div class="fb-opt-icon">😮‍💨</div>
+      <div class="fb-opt-icon">‍</div>
       <div><div class="fb-opt-label">Muy difícil</div><div class="fb-opt-sub">Necesito reducir la intensidad</div></div>
     </div>
   </div>
@@ -1549,7 +1552,7 @@ body{
 <!-- API KEY MODAL -->
 <div class="weight-modal" id="api-key-modal">
   <div class="weight-modal-card">
-    <div class="wm-title">🔑 Clave API necesaria</div>
+    <div class="wm-title"> Clave API necesaria</div>
     <div class="wm-sub">Para generar workouts con IA necesitas una clave API de Anthropic (Claude). Es gratuita para uso personal — puedes obtenerla en console.anthropic.com.</div>
     <input type="password" class="wm-input" id="api-modal-input" placeholder="sk-ant-..." style="font-size:15px;font-family:monospace;text-align:left;padding:14px">
     <button class="btn btn-primary btn-lg" onclick="saveApiFromModal()">Guardar y generar workouts</button>
@@ -1572,110 +1575,110 @@ body{
 
     <!-- Q0: Cheat day? -->
     <div class="wq-block" id="wq-0">
-      <span class="wq-section-badge badge-yesterday">📅 Ayer</span>
-      <div class="wq-title">¿Fue ayer día de cheat? 🍕</div>
+      <span class="wq-section-badge badge-yesterday"> Ayer</span>
+      <div class="wq-title">¿Fue ayer día de cheat?</div>
       <div class="wq-sub">Un cheat day controlado no arruina el progreso.</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-cheat-no" onclick="wizSelect('cheat_day','no','wq-cheat-no','wq-cheat-yes')"><div class="wc-icon">✅</div><div class="wc-label">No, día normal</div></div>
-        <div class="wq-chip" id="wq-cheat-yes" onclick="wizSelect('cheat_day','yes','wq-cheat-no','wq-cheat-yes')"><div class="wc-icon">🍕</div><div class="wc-label">Sí, cheat day</div></div>
+        <div class="wq-chip" id="wq-cheat-no" onclick="wizSelect('cheat_day','no','wq-cheat-no','wq-cheat-yes')"><div class="wc-icon"></div><div class="wc-label">No, día normal</div></div>
+        <div class="wq-chip" id="wq-cheat-yes" onclick="wizSelect('cheat_day','yes','wq-cheat-no','wq-cheat-yes')"><div class="wc-icon"></div><div class="wc-label">Sí, cheat day</div></div>
       </div>
       <div id="wq-cheat-detail" style="display:none;margin-top:10px">
         <textarea class="wq-text" id="wq-cheat-text" placeholder="¿Qué comiste?" rows="2"></textarea>
         <div class="wq-chips" style="margin-top:8px">
-          <div class="wq-chip" id="wq-cheat-mild" onclick="wizSelect('cheat_intensity','mild','wq-cheat-mild','wq-cheat-mod','wq-cheat-wild')"><div class="wc-icon">😊</div><div class="wc-label">Leve</div></div>
-          <div class="wq-chip" id="wq-cheat-mod" onclick="wizSelect('cheat_intensity','moderate','wq-cheat-mild','wq-cheat-mod','wq-cheat-wild')"><div class="wc-icon">😬</div><div class="wc-label">Moderado</div></div>
-          <div class="wq-chip" id="wq-cheat-wild" onclick="wizSelect('cheat_intensity','wild','wq-cheat-mild','wq-cheat-mod','wq-cheat-wild')"><div class="wc-icon">🤯</div><div class="wc-label">Extremo</div></div>
+          <div class="wq-chip" id="wq-cheat-mild" onclick="wizSelect('cheat_intensity','mild','wq-cheat-mild','wq-cheat-mod','wq-cheat-wild')"><div class="wc-icon"></div><div class="wc-label">Leve</div></div>
+          <div class="wq-chip" id="wq-cheat-mod" onclick="wizSelect('cheat_intensity','moderate','wq-cheat-mild','wq-cheat-mod','wq-cheat-wild')"><div class="wc-icon"></div><div class="wc-label">Moderado</div></div>
+          <div class="wq-chip" id="wq-cheat-wild" onclick="wizSelect('cheat_intensity','wild','wq-cheat-mild','wq-cheat-mod','wq-cheat-wild')"><div class="wc-icon"></div><div class="wc-label">Extremo</div></div>
         </div>
       </div>
     </div>
 
     <!-- QSL: Sleep + Feeling TODAY -->
     <div class="wq-block" id="wq-SL">
-      <span class="wq-section-badge badge-today">☀️ Hoy</span>
+      <span class="wq-section-badge badge-today"> Hoy</span>
       <div class="wq-title">Sueño & Estado de ánimo</div>
-      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px">😴 ¿Cómo dormiste anoche?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px"> ¿Cómo dormiste anoche?</div>
       <div class="wq-slider-wrap">
         <div class="wq-slider-row">
           <input type="range" class="wq-slider" id="wq-sleep-slider" min="1" max="10" value="6" oninput="wizSliderUpdate('wq-sleep-val',this.value,'sleep')">
           <div class="wq-slider-val" id="wq-sleep-val">6</div>
         </div>
-        <div class="wq-slider-hints"><span>Terrible 😵</span><span>Perfecto 😴</span></div>
+        <div class="wq-slider-hints"><span>Terrible</span><span>Perfecto</span></div>
       </div>
       <div class="wq-chips" style="margin-top:10px">
-        <div class="wq-chip" id="wq-sleep-lt6" onclick="wizToggleChip('wq-sleep-lt6','sleep_under6')"><div class="wc-icon">⏰</div><div class="wc-label">Menos de 6h</div></div>
-        <div class="wq-chip" id="wq-sleep-ok" onclick="wizToggleChip('wq-sleep-ok','sleep_ok')"><div class="wc-icon">✅</div><div class="wc-label">6h o más</div></div>
+        <div class="wq-chip" id="wq-sleep-lt6" onclick="wizToggleChip('wq-sleep-lt6','sleep_under6')"><div class="wc-icon"></div><div class="wc-label">Menos de 6h</div></div>
+        <div class="wq-chip" id="wq-sleep-ok" onclick="wizToggleChip('wq-sleep-ok','sleep_ok')"><div class="wc-icon"></div><div class="wc-label">6h o más</div></div>
       </div>
       <div style="height:1px;background:var(--border);margin:16px 0"></div>
-      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px">⚡ ¿Cómo te sientes ahora?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px"> ¿Cómo te sientes ahora?</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-feel-low" onclick="wizSelect('feeling','low','wq-feel-low','wq-feel-ok','wq-feel-great')"><div class="wc-icon">😴</div><div class="wc-label">Cansado</div></div>
-        <div class="wq-chip" id="wq-feel-ok" onclick="wizSelect('feeling','ok','wq-feel-low','wq-feel-ok','wq-feel-great')"><div class="wc-icon">😊</div><div class="wc-label">Normal</div></div>
-        <div class="wq-chip" id="wq-feel-great" onclick="wizSelect('feeling','great','wq-feel-low','wq-feel-ok','wq-feel-great')"><div class="wc-icon">⚡</div><div class="wc-label">Excelente</div></div>
+        <div class="wq-chip" id="wq-feel-low" onclick="wizSelect('feeling','low','wq-feel-low','wq-feel-ok','wq-feel-great')"><div class="wc-icon"></div><div class="wc-label">Cansado</div></div>
+        <div class="wq-chip" id="wq-feel-ok" onclick="wizSelect('feeling','ok','wq-feel-low','wq-feel-ok','wq-feel-great')"><div class="wc-icon"></div><div class="wc-label">Normal</div></div>
+        <div class="wq-chip" id="wq-feel-great" onclick="wizSelect('feeling','great','wq-feel-low','wq-feel-ok','wq-feel-great')"><div class="wc-icon"></div><div class="wc-label">Excelente</div></div>
       </div>
       <textarea class="wq-text" id="wq-feel-notes" placeholder="Algo más para el coach... (opcional)" rows="2" style="margin-top:10px"></textarea>
     </div>
 
     <!-- QB: Breakfast TODAY + Lunch YESTERDAY -->
     <div class="wq-block" id="wq-B">
-      <div style="display:flex;gap:8px;margin-bottom:12px"><span class="wq-section-badge badge-today">☀️ Hoy</span><span class="wq-section-badge badge-yesterday">📅 Ayer</span></div>
+      <div style="display:flex;gap:8px;margin-bottom:12px"><span class="wq-section-badge badge-today"> Hoy</span><span class="wq-section-badge badge-yesterday"> Ayer</span></div>
       <div class="wq-title">Desayuno & Almuerzo</div>
-      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px">☀️ Desayuno de HOY</div>
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px"> Desayuno de HOY</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-bkfast-no" onclick="wizSelect('breakfast','no','wq-bkfast-no','wq-bkfast-yes','wq-bkfast-light')"><div class="wc-icon">☕</div><div class="wc-label">No desayuné</div></div>
-        <div class="wq-chip" id="wq-bkfast-light" onclick="wizSelect('breakfast','light','wq-bkfast-no','wq-bkfast-yes','wq-bkfast-light')"><div class="wc-icon">🥑</div><div class="wc-label">Algo ligero</div></div>
-        <div class="wq-chip" id="wq-bkfast-yes" onclick="wizSelect('breakfast','yes','wq-bkfast-no','wq-bkfast-yes','wq-bkfast-light')"><div class="wc-icon">🍳</div><div class="wc-label">Desayuné</div></div>
+        <div class="wq-chip" id="wq-bkfast-no" onclick="wizSelect('breakfast','no','wq-bkfast-no','wq-bkfast-yes','wq-bkfast-light')"><div class="wc-icon"></div><div class="wc-label">No desayuné</div></div>
+        <div class="wq-chip" id="wq-bkfast-light" onclick="wizSelect('breakfast','light','wq-bkfast-no','wq-bkfast-yes','wq-bkfast-light')"><div class="wc-icon"></div><div class="wc-label">Algo ligero</div></div>
+        <div class="wq-chip" id="wq-bkfast-yes" onclick="wizSelect('breakfast','yes','wq-bkfast-no','wq-bkfast-yes','wq-bkfast-light')"><div class="wc-icon"></div><div class="wc-label">Desayuné</div></div>
       </div>
       <div id="wq-bkfast-detail" style="display:none;margin-top:8px">
         <textarea class="wq-text" id="wq-bkfast-text" placeholder="¿Qué desayunaste?" rows="2"></textarea>
         <div class="wq-chips" style="margin-top:8px">
-          <div class="wq-chip" id="wq-bread-yes" onclick="wizToggleChip('wq-bread-yes','had_bread')"><div class="wc-icon">🍞</div><div class="wc-label">Comí pan</div></div>
-          <div class="wq-chip" id="wq-bread-no" onclick="wizToggleChip('wq-bread-no','no_bread')"><div class="wc-icon">🚫</div><div class="wc-label">Sin pan</div></div>
+          <div class="wq-chip" id="wq-bread-yes" onclick="wizToggleChip('wq-bread-yes','had_bread')"><div class="wc-icon"></div><div class="wc-label">Comí pan</div></div>
+          <div class="wq-chip" id="wq-bread-no" onclick="wizToggleChip('wq-bread-no','no_bread')"><div class="wc-icon"></div><div class="wc-label">Sin pan</div></div>
         </div>
       </div>
       <div style="height:1px;background:var(--border);margin:16px 0"></div>
-      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">📅 Almuerzo de AYER</div>
+      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px"> Almuerzo de AYER</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-lunch-skip" onclick="wizSelect('lunch','skip','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon">🚫</div><div class="wc-label">No almorcé</div><div class="wc-sub">~0 kcal</div></div>
-        <div class="wq-chip" id="wq-lunch-light" onclick="wizSelect('lunch','light','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon">🥗</div><div class="wc-label">Ligero</div><div class="wc-sub">~600 kcal</div></div>
-        <div class="wq-chip" id="wq-lunch-normal" onclick="wizSelect('lunch','normal','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon">🍽️</div><div class="wc-label">Normal</div><div class="wc-sub">~950 kcal</div></div>
-        <div class="wq-chip" id="wq-lunch-heavy" onclick="wizSelect('lunch','heavy','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon">🤤</div><div class="wc-label">Abundante</div><div class="wc-sub">~1300 kcal</div></div>
+        <div class="wq-chip" id="wq-lunch-skip" onclick="wizSelect('lunch','skip','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon"></div><div class="wc-label">No almorcé</div><div class="wc-sub">~0 kcal</div></div>
+        <div class="wq-chip" id="wq-lunch-light" onclick="wizSelect('lunch','light','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon"></div><div class="wc-label">Ligero</div><div class="wc-sub">~600 kcal</div></div>
+        <div class="wq-chip" id="wq-lunch-normal" onclick="wizSelect('lunch','normal','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon"></div><div class="wc-label">Normal</div><div class="wc-sub">~950 kcal</div></div>
+        <div class="wq-chip" id="wq-lunch-heavy" onclick="wizSelect('lunch','heavy','wq-lunch-skip','wq-lunch-light','wq-lunch-normal','wq-lunch-heavy')"><div class="wc-icon"></div><div class="wc-label">Abundante</div><div class="wc-sub">~1300 kcal</div></div>
       </div>
     </div>
 
     <!-- QW: Walks YESTERDAY + TODAY -->
     <div class="wq-block" id="wq-W">
-      <div style="display:flex;gap:8px;margin-bottom:12px"><span class="wq-section-badge badge-yesterday">📅 Ayer</span><span class="wq-section-badge badge-today">☀️ Hoy</span></div>
+      <div style="display:flex;gap:8px;margin-bottom:12px"><span class="wq-section-badge badge-yesterday"> Ayer</span><span class="wq-section-badge badge-today"> Hoy</span></div>
       <div class="wq-title">Caminatas</div>
-      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">📅 ¿Caminaste AYER?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px"> ¿Caminaste AYER?</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-walk-no" onclick="wizSelect('walk_yday','no','wq-walk-no','wq-walk-yes')"><div class="wc-icon">❌</div><div class="wc-label">No caminé</div></div>
-        <div class="wq-chip" id="wq-walk-yes" onclick="wizSelect('walk_yday','yes','wq-walk-no','wq-walk-yes')"><div class="wc-icon">🚶</div><div class="wc-label">Sí caminé</div></div>
+        <div class="wq-chip" id="wq-walk-no" onclick="wizSelect('walk_yday','no','wq-walk-no','wq-walk-yes')"><div class="wc-icon"></div><div class="wc-label">No caminé</div></div>
+        <div class="wq-chip" id="wq-walk-yes" onclick="wizSelect('walk_yday','yes','wq-walk-no','wq-walk-yes')"><div class="wc-icon"></div><div class="wc-label">Sí caminé</div></div>
       </div>
       <div id="wq-walk-detail" style="display:none;margin-top:8px">
         <div class="wq-durations" id="wq-walk-durs">
           <div class="wq-dur" onclick="wizDuration('walk_duration',20,this)">20 min</div>
           <div class="wq-dur" onclick="wizDuration('walk_duration',30,this)">30 min</div>
-          <div class="wq-dur" onclick="wizDuration('walk_duration',45,this)">45 min ⭐</div>
+          <div class="wq-dur" onclick="wizDuration('walk_duration',45,this)">45 min</div>
           <div class="wq-dur" onclick="wizDuration('walk_duration',60,this)">1 hora</div>
           <div class="wq-dur" onclick="wizDuration('walk_duration',90,this)">+1 hora</div>
         </div>
         <div class="wq-chips" style="margin-top:10px">
-          <div class="wq-chip" id="wq-walk-walk" onclick="wizSelect('walk_type','walk','wq-walk-walk','wq-walk-jog','wq-walk-mix')"><div class="wc-icon">🚶</div><div class="wc-label">Caminé</div></div>
-          <div class="wq-chip" id="wq-walk-jog" onclick="wizSelect('walk_type','jog','wq-walk-walk','wq-walk-jog','wq-walk-mix')"><div class="wc-icon">🏃</div><div class="wc-label">Troté</div></div>
-          <div class="wq-chip" id="wq-walk-mix" onclick="wizSelect('walk_type','mix','wq-walk-walk','wq-walk-jog','wq-walk-mix')"><div class="wc-icon">🔀</div><div class="wc-label">Mezcla</div></div>
+          <div class="wq-chip" id="wq-walk-walk" onclick="wizSelect('walk_type','walk','wq-walk-walk','wq-walk-jog','wq-walk-mix')"><div class="wc-icon"></div><div class="wc-label">Caminé</div></div>
+          <div class="wq-chip" id="wq-walk-jog" onclick="wizSelect('walk_type','jog','wq-walk-walk','wq-walk-jog','wq-walk-mix')"><div class="wc-icon"></div><div class="wc-label">Troté</div></div>
+          <div class="wq-chip" id="wq-walk-mix" onclick="wizSelect('walk_type','mix','wq-walk-walk','wq-walk-jog','wq-walk-mix')"><div class="wc-icon"></div><div class="wc-label">Mezcla</div></div>
         </div>
       </div>
       <div style="height:1px;background:var(--border);margin:16px 0"></div>
-      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px">☀️ ¿Ya caminaste HOY?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:8px"> ¿Ya caminaste HOY?</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-twalk-no" onclick="wizSelect('walk_today','no','wq-twalk-no','wq-twalk-yes')"><div class="wc-icon">⏰</div><div class="wc-label">Aún no</div></div>
-        <div class="wq-chip" id="wq-twalk-yes" onclick="wizSelect('walk_today','yes','wq-twalk-no','wq-twalk-yes')"><div class="wc-icon">🏃</div><div class="wc-label">¡Ya lo hice!</div></div>
+        <div class="wq-chip" id="wq-twalk-no" onclick="wizSelect('walk_today','no','wq-twalk-no','wq-twalk-yes')"><div class="wc-icon"></div><div class="wc-label">Aún no</div></div>
+        <div class="wq-chip" id="wq-twalk-yes" onclick="wizSelect('walk_today','yes','wq-twalk-no','wq-twalk-yes')"><div class="wc-icon"></div><div class="wc-label">¡Ya lo hice!</div></div>
       </div>
       <div id="wq-twalk-detail" style="display:none;margin-top:8px">
         <div class="wq-durations">
           <div class="wq-dur" onclick="wizDuration('walk_today_duration',20,this)">20 min</div>
           <div class="wq-dur" onclick="wizDuration('walk_today_duration',30,this)">30 min</div>
-          <div class="wq-dur" onclick="wizDuration('walk_today_duration',45,this)">45 min ⭐</div>
+          <div class="wq-dur" onclick="wizDuration('walk_today_duration',45,this)">45 min</div>
           <div class="wq-dur" onclick="wizDuration('walk_today_duration',60,this)">1 hora</div>
           <div class="wq-dur" onclick="wizDuration('walk_today_duration',90,this)">+1 hora</div>
         </div>
@@ -1684,59 +1687,59 @@ body{
 
     <!-- QDR: All drinks YESTERDAY -->
     <div class="wq-block" id="wq-DR">
-      <span class="wq-section-badge badge-yesterday">📅 Ayer</span>
+      <span class="wq-section-badge badge-yesterday"> Ayer</span>
       <div class="wq-title">Agua & Bebidas</div>
       <div style="display:flex;flex-direction:column;gap:18px">
-        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px">💧 Botellas agua 600ml (meta: 4)</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px"> Botellas agua 600ml (meta: 4)</div>
           <div class="wq-stepper"><button class="wq-step-btn" onclick="wizStep('water_glasses',-1,'wq-water-num',0,10)">−</button><div><div class="wq-step-num" id="wq-water-num">2</div><div class="wq-step-unit" style="text-align:center">botellas</div></div><button class="wq-step-btn plus" onclick="wizStep('water_glasses',1,'wq-water-num',0,10)">+</button></div></div>
-        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px">🥤 Jugos naranja (~120 kcal c/u)</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px"> Jugos naranja (~120 kcal c/u)</div>
           <div class="wq-stepper"><button class="wq-step-btn" onclick="wizStep('oj_glasses',-1,'wq-oj-num',0,10)">−</button><div><div class="wq-step-num" id="wq-oj-num">0</div><div class="wq-step-unit" style="text-align:center">vasos</div></div><button class="wq-step-btn plus" onclick="wizStep('oj_glasses',1,'wq-oj-num',0,10)">+</button></div></div>
-        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px">⚡ Jet Zero grande 600ml</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px"> Jet Zero grande 600ml</div>
           <div class="wq-stepper"><button class="wq-step-btn" onclick="wizStep('jet_large',-1,'wq-jet-large-num',0,10)">−</button><div><div class="wq-step-num" id="wq-jet-large-num">0</div><div class="wq-step-unit" style="text-align:center">botellas</div></div><button class="wq-step-btn plus" onclick="wizStep('jet_large',1,'wq-jet-large-num',0,10)">+</button></div></div>
-        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px">⚡ Jet Zero pequeño 350ml</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px"> Jet Zero pequeño 350ml</div>
           <div class="wq-stepper"><button class="wq-step-btn" onclick="wizStep('jet_small',-1,'wq-jet-small-num',0,10)">−</button><div><div class="wq-step-num" id="wq-jet-small-num">0</div><div class="wq-step-unit" style="text-align:center">botellas</div></div><button class="wq-step-btn plus" onclick="wizStep('jet_small',1,'wq-jet-small-num',0,10)">+</button></div></div>
-        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px">🥤 Coca Cola Zero (vasos grandes)</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px"> Coca Cola Zero (vasos grandes)</div>
           <div class="wq-stepper"><button class="wq-step-btn" onclick="wizStep('coke_zero',-1,'wq-coke-num',0,10)">−</button><div><div class="wq-step-num" id="wq-coke-num">0</div><div class="wq-step-unit" style="text-align:center">vasos</div></div><button class="wq-step-btn plus" onclick="wizStep('coke_zero',1,'wq-coke-num',0,10)">+</button></div></div>
       </div>
     </div>
 
     <!-- QDN: Dinner + Snacks + Eating out + Carbs YESTERDAY -->
     <div class="wq-block" id="wq-DN">
-      <span class="wq-section-badge badge-yesterday">📅 Ayer</span>
+      <span class="wq-section-badge badge-yesterday"> Ayer</span>
       <div class="wq-title">Cena, Snacks & Comida fuera</div>
-      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">🍽️ ¿Cenaste?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px"> ¿Cenaste?</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-din-no" onclick="wizSelect('dinner','no','wq-din-no','wq-din-light','wq-din-full')"><div class="wc-icon">✅</div><div class="wc-label">No cené</div><div class="wc-sub">¡Perfecto!</div></div>
-        <div class="wq-chip" id="wq-din-light" onclick="wizSelect('dinner','light','wq-din-no','wq-din-light','wq-din-full')"><div class="wc-icon">🥗</div><div class="wc-label">Algo ligero</div></div>
-        <div class="wq-chip" id="wq-din-full" onclick="wizSelect('dinner','full','wq-din-no','wq-din-light','wq-din-full')"><div class="wc-icon">🍽️</div><div class="wc-label">Cena completa</div></div>
+        <div class="wq-chip" id="wq-din-no" onclick="wizSelect('dinner','no','wq-din-no','wq-din-light','wq-din-full')"><div class="wc-icon"></div><div class="wc-label">No cené</div><div class="wc-sub">¡Perfecto!</div></div>
+        <div class="wq-chip" id="wq-din-light" onclick="wizSelect('dinner','light','wq-din-no','wq-din-light','wq-din-full')"><div class="wc-icon"></div><div class="wc-label">Algo ligero</div></div>
+        <div class="wq-chip" id="wq-din-full" onclick="wizSelect('dinner','full','wq-din-no','wq-din-light','wq-din-full')"><div class="wc-icon"></div><div class="wc-label">Cena completa</div></div>
       </div>
       <div id="wq-din-detail" style="display:none;margin-top:8px">
         <textarea class="wq-text" id="wq-din-text" placeholder="¿Qué cenaste?" rows="2"></textarea>
         <div class="wq-chips" style="margin-top:8px">
-          <div class="wq-chip" id="wq-din-sm" onclick="wizSelect('dinner_volume','small','wq-din-sm','wq-din-md','wq-din-lg')"><div class="wc-icon">🤏</div><div class="wc-label">Poco</div></div>
-          <div class="wq-chip" id="wq-din-md" onclick="wizSelect('dinner_volume','medium','wq-din-sm','wq-din-md','wq-din-lg')"><div class="wc-icon">👌</div><div class="wc-label">Normal</div></div>
-          <div class="wq-chip" id="wq-din-lg" onclick="wizSelect('dinner_volume','large','wq-din-sm','wq-din-md','wq-din-lg')"><div class="wc-icon">😬</div><div class="wc-label">Mucho</div></div>
+          <div class="wq-chip" id="wq-din-sm" onclick="wizSelect('dinner_volume','small','wq-din-sm','wq-din-md','wq-din-lg')"><div class="wc-icon"></div><div class="wc-label">Poco</div></div>
+          <div class="wq-chip" id="wq-din-md" onclick="wizSelect('dinner_volume','medium','wq-din-sm','wq-din-md','wq-din-lg')"><div class="wc-icon"></div><div class="wc-label">Normal</div></div>
+          <div class="wq-chip" id="wq-din-lg" onclick="wizSelect('dinner_volume','large','wq-din-sm','wq-din-md','wq-din-lg')"><div class="wc-icon"></div><div class="wc-label">Mucho</div></div>
         </div>
       </div>
       <div style="height:1px;background:var(--border);margin:16px 0"></div>
-      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">🌙 ¿Picaste de noche?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px"> ¿Picaste de noche?</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-snack-no" onclick="wizSelect('night_snack','no','wq-snack-no','wq-snack-little','wq-snack-lot')"><div class="wc-icon">✅</div><div class="wc-label">No piqué</div></div>
-        <div class="wq-chip" id="wq-snack-little" onclick="wizSelect('night_snack','little','wq-snack-no','wq-snack-little','wq-snack-lot')"><div class="wc-icon">🍪</div><div class="wc-label">Poquito</div></div>
-        <div class="wq-chip" id="wq-snack-lot" onclick="wizSelect('night_snack','lot','wq-snack-no','wq-snack-little','wq-snack-lot')"><div class="wc-icon">😬</div><div class="wc-label">Bastante</div></div>
+        <div class="wq-chip" id="wq-snack-no" onclick="wizSelect('night_snack','no','wq-snack-no','wq-snack-little','wq-snack-lot')"><div class="wc-icon"></div><div class="wc-label">No piqué</div></div>
+        <div class="wq-chip" id="wq-snack-little" onclick="wizSelect('night_snack','little','wq-snack-no','wq-snack-little','wq-snack-lot')"><div class="wc-icon"></div><div class="wc-label">Poquito</div></div>
+        <div class="wq-chip" id="wq-snack-lot" onclick="wizSelect('night_snack','lot','wq-snack-no','wq-snack-little','wq-snack-lot')"><div class="wc-icon"></div><div class="wc-label">Bastante</div></div>
       </div>
       <div style="height:1px;background:var(--border);margin:16px 0"></div>
-      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">🍚 ¿Arroz u harinas en exceso?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px"> ¿Arroz u harinas en exceso?</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-rice-no" onclick="wizSelect('excess_carbs','no','wq-rice-no','wq-rice-mod','wq-rice-yes')"><div class="wc-icon">✅</div><div class="wc-label">No, controlé</div></div>
-        <div class="wq-chip" id="wq-rice-mod" onclick="wizSelect('excess_carbs','moderate','wq-rice-no','wq-rice-mod','wq-rice-yes')"><div class="wc-icon">🍚</div><div class="wc-label">Un poco</div></div>
-        <div class="wq-chip" id="wq-rice-yes" onclick="wizSelect('excess_carbs','yes','wq-rice-no','wq-rice-mod','wq-rice-yes')"><div class="wc-icon">😬</div><div class="wc-label">Bastante</div></div>
+        <div class="wq-chip" id="wq-rice-no" onclick="wizSelect('excess_carbs','no','wq-rice-no','wq-rice-mod','wq-rice-yes')"><div class="wc-icon"></div><div class="wc-label">No, controlé</div></div>
+        <div class="wq-chip" id="wq-rice-mod" onclick="wizSelect('excess_carbs','moderate','wq-rice-no','wq-rice-mod','wq-rice-yes')"><div class="wc-icon"></div><div class="wc-label">Un poco</div></div>
+        <div class="wq-chip" id="wq-rice-yes" onclick="wizSelect('excess_carbs','yes','wq-rice-no','wq-rice-mod','wq-rice-yes')"><div class="wc-icon"></div><div class="wc-label">Bastante</div></div>
       </div>
       <div style="height:1px;background:var(--border);margin:16px 0"></div>
-      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">🍔 ¿Comiste fuera de casa?</div>
+      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px"> ¿Comiste fuera de casa?</div>
       <div class="wq-chips">
-        <div class="wq-chip" id="wq-out-no" onclick="wizSelect('ate_out','no','wq-out-no','wq-out-yes')"><div class="wc-icon">🏠</div><div class="wc-label">Comí en casa</div></div>
-        <div class="wq-chip" id="wq-out-yes" onclick="wizSelect('ate_out','yes','wq-out-no','wq-out-yes')"><div class="wc-icon">🍔</div><div class="wc-label">Comí afuera</div></div>
+        <div class="wq-chip" id="wq-out-no" onclick="wizSelect('ate_out','no','wq-out-no','wq-out-yes')"><div class="wc-icon"></div><div class="wc-label">Comí en casa</div></div>
+        <div class="wq-chip" id="wq-out-yes" onclick="wizSelect('ate_out','yes','wq-out-no','wq-out-yes')"><div class="wc-icon"></div><div class="wc-label">Comí afuera</div></div>
       </div>
       <div id="wq-out-detail" style="display:none;margin-top:8px">
         <textarea class="wq-text" id="wq-out-text" placeholder="¿Dónde y qué? Ej: Taco Bell, 3 tacos + refresco..." rows="2"></textarea>
@@ -1745,22 +1748,22 @@ body{
 
     <!-- Q12s: Other snacks YESTERDAY -->
     <div class="wq-block" id="wq-12s">
-      <span class="wq-section-badge badge-yesterday">📅 Ayer</span>
+      <span class="wq-section-badge badge-yesterday"> Ayer</span>
       <div class="wq-title">¿Comiste otras cosas?</div>
       <div class="wq-sub">Selecciona todo lo que aplique.</div>
       <div class="wq-chips" style="flex-wrap:wrap">
-        <div class="wq-chip" id="snk-cookies" onclick="wizToggleChip('snk-cookies','snk_cookies')"><div class="wc-icon">🍪</div><div class="wc-label">Galletas</div></div>
-        <div class="wq-chip" id="snk-chips" onclick="wizToggleChip('snk-chips','snk_chips')"><div class="wc-icon">🥔</div><div class="wc-label">Papas/Chips</div></div>
-        <div class="wq-chip" id="snk-candy" onclick="wizToggleChip('snk-candy','snk_candy')"><div class="wc-icon">🍬</div><div class="wc-label">Dulces</div></div>
-        <div class="wq-chip" id="snk-icecream" onclick="wizToggleChip('snk-icecream','snk_icecream')"><div class="wc-icon">🍦</div><div class="wc-label">Helado</div></div>
-        <div class="wq-chip" id="snk-bread2" onclick="wizToggleChip('snk-bread2','snk_bread2')"><div class="wc-icon">🍞</div><div class="wc-label">Pan extra</div></div>
-        <div class="wq-chip" id="snk-fruit" onclick="wizToggleChip('snk-fruit','snk_fruit')"><div class="wc-icon">🍎</div><div class="wc-label">Frutas</div></div>
-        <div class="wq-chip" id="snk-cheese" onclick="wizToggleChip('snk-cheese','snk_cheese')"><div class="wc-icon">🧀</div><div class="wc-label">Queso</div></div>
-        <div class="wq-chip" id="snk-nuts" onclick="wizToggleChip('snk-nuts','snk_nuts')"><div class="wc-icon">🥜</div><div class="wc-label">Nueces</div></div>
-        <div class="wq-chip" id="snk-soda" onclick="wizToggleChip('snk-soda','snk_soda')"><div class="wc-icon">🥤</div><div class="wc-label">Refresco</div></div>
-        <div class="wq-chip" id="snk-beer" onclick="wizToggleChip('snk-beer','snk_beer')"><div class="wc-icon">🍺</div><div class="wc-label">Cerveza</div></div>
-        <div class="wq-chip" id="snk-wine" onclick="wizToggleChip('snk-wine','snk_wine')"><div class="wc-icon">🍷</div><div class="wc-label">Vino</div></div>
-        <div class="wq-chip" id="snk-coffee" onclick="wizToggleChip('snk-coffee','snk_coffee')"><div class="wc-icon">☕</div><div class="wc-label">Café con azúcar</div></div>
+        <div class="wq-chip" id="snk-cookies" onclick="wizToggleChip('snk-cookies','snk_cookies')"><div class="wc-icon"></div><div class="wc-label">Galletas</div></div>
+        <div class="wq-chip" id="snk-chips" onclick="wizToggleChip('snk-chips','snk_chips')"><div class="wc-icon"></div><div class="wc-label">Papas/Chips</div></div>
+        <div class="wq-chip" id="snk-candy" onclick="wizToggleChip('snk-candy','snk_candy')"><div class="wc-icon"></div><div class="wc-label">Dulces</div></div>
+        <div class="wq-chip" id="snk-icecream" onclick="wizToggleChip('snk-icecream','snk_icecream')"><div class="wc-icon"></div><div class="wc-label">Helado</div></div>
+        <div class="wq-chip" id="snk-bread2" onclick="wizToggleChip('snk-bread2','snk_bread2')"><div class="wc-icon"></div><div class="wc-label">Pan extra</div></div>
+        <div class="wq-chip" id="snk-fruit" onclick="wizToggleChip('snk-fruit','snk_fruit')"><div class="wc-icon"></div><div class="wc-label">Frutas</div></div>
+        <div class="wq-chip" id="snk-cheese" onclick="wizToggleChip('snk-cheese','snk_cheese')"><div class="wc-icon"></div><div class="wc-label">Queso</div></div>
+        <div class="wq-chip" id="snk-nuts" onclick="wizToggleChip('snk-nuts','snk_nuts')"><div class="wc-icon"></div><div class="wc-label">Nueces</div></div>
+        <div class="wq-chip" id="snk-soda" onclick="wizToggleChip('snk-soda','snk_soda')"><div class="wc-icon"></div><div class="wc-label">Refresco</div></div>
+        <div class="wq-chip" id="snk-beer" onclick="wizToggleChip('snk-beer','snk_beer')"><div class="wc-icon"></div><div class="wc-label">Cerveza</div></div>
+        <div class="wq-chip" id="snk-wine" onclick="wizToggleChip('snk-wine','snk_wine')"><div class="wc-icon"></div><div class="wc-label">Vino</div></div>
+        <div class="wq-chip" id="snk-coffee" onclick="wizToggleChip('snk-coffee','snk_coffee')"><div class="wc-icon"></div><div class="wc-label">Café con azúcar</div></div>
       </div>
       <textarea class="wq-text" id="wq-snacks-other" placeholder="Algo más... (opcional)" rows="2" style="margin-top:10px"></textarea>
     </div>
@@ -1831,25 +1834,25 @@ body{
         <!-- Week summary grid -->
         <div class="summary-grid" id="habit-summary-grid">
           <div class="sg-card">
-            <div class="sg-icon">😴</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sh-sleep">—</div>
             <div class="sg-lbl">Sueño prom.</div>
             <div class="sg-sub" id="sh-sleep-sub">—</div>
           </div>
           <div class="sg-card">
-            <div class="sg-icon">💧</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sh-water">—</div>
             <div class="sg-lbl">Agua prom.</div>
             <div class="sg-sub" id="sh-water-sub">vasos/día (meta: 8)</div>
           </div>
           <div class="sg-card">
-            <div class="sg-icon">🔥</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sh-kcal-deficit">—</div>
             <div class="sg-lbl">Déficit prom.</div>
             <div class="sg-sub" id="sh-kcal-sub">kcal/día</div>
           </div>
           <div class="sg-card">
-            <div class="sg-icon">🚶</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sh-walk">—</div>
             <div class="sg-lbl">Caminatas</div>
             <div class="sg-sub" id="sh-walk-sub">días con actividad extra</div>
@@ -1883,25 +1886,25 @@ body{
       <div class="st-section" style="padding-top:16px">
         <div class="summary-grid">
           <div class="sg-card">
-            <div class="sg-icon">💪</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sw-total">0</div>
             <div class="sg-lbl">Sesiones</div>
             <div class="sg-sub">Total completadas</div>
           </div>
           <div class="sg-card">
-            <div class="sg-icon">⏱</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sw-mins">0</div>
             <div class="sg-lbl">Minutos</div>
             <div class="sg-sub">Tiempo total</div>
           </div>
           <div class="sg-card">
-            <div class="sg-icon">🔥</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sw-kcal">0</div>
             <div class="sg-lbl">kcal quemadas</div>
             <div class="sg-sub">En workouts</div>
           </div>
           <div class="sg-card">
-            <div class="sg-icon">📅</div>
+            <div class="sg-icon"></div>
             <div class="sg-val" id="sw-streak">0</div>
             <div class="sg-lbl">Racha actual</div>
             <div class="sg-sub" id="sw-best-streak">Mejor: 0 días</div>
@@ -1934,7 +1937,7 @@ body{
 
         <!-- Hero: weight progress -->
         <div class="progress-hero">
-          <div class="ph-title">🎯 Tu meta</div>
+          <div class="ph-title"> Tu meta</div>
           <div class="ph-main" id="prog-headline">— kg perdidos</div>
           <div class="ph-sub" id="prog-sub">—</div>
         </div>
@@ -1977,7 +1980,7 @@ body{
 
         <!-- Score / level summary -->
         <div class="progress-hero" style="margin-bottom:16px">
-          <div class="ph-title">🏅 Tu nivel</div>
+          <div class="ph-title"> Tu nivel</div>
           <div class="ph-main" id="badge-level-title">Principiante</div>
           <div class="ph-sub" id="badge-level-sub">Completa más sesiones para avanzar</div>
         </div>
@@ -2000,9 +2003,9 @@ body{
         <div class="st-section">
           <div class="st-section-title">Sistema de puntuación</div>
           <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--rsm);overflow:hidden">
-            <div style="padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--green)">✅ Bonificaciones</div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--green)"> Bonificaciones</div>
             <div id="bonus-list" style="padding:10px 14px"></div>
-            <div style="padding:12px 14px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--red)">⚠️ Penalizaciones</div>
+            <div style="padding:12px 14px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--red)"> Penalizaciones</div>
             <div id="penalty-list" style="padding:10px 14px"></div>
           </div>
         </div>
@@ -2012,9 +2015,9 @@ body{
   </div><!-- stats-scroll -->
 
   <div class="bottom-nav">
-    <button class="nav-item" id="navS-home" onclick="navTo('home')"><div class="nav-icon">🏠</div><div class="nav-lbl">Inicio</div></button>
-    <button class="nav-item active" id="navS-stats" onclick="navTo('stats')"><div class="nav-icon">📊</div><div class="nav-lbl">Stats</div></button>
-    <button class="nav-item" id="navS-profile" onclick="navTo('profile')"><div class="nav-icon">👤</div><div class="nav-lbl">Perfil</div></button>
+    <button class="nav-item" id="navS-home" onclick="navTo('home')"><div class="nav-icon"></div><div class="nav-lbl">Inicio</div></button>
+    <button class="nav-item active" id="navS-stats" onclick="navTo('stats')"><div class="nav-icon"></div><div class="nav-lbl">Stats</div></button>
+    <button class="nav-item" id="navS-profile" onclick="navTo('profile')"><div class="nav-icon"></div><div class="nav-lbl">Perfil</div></button>
   </div>
 </div>
 
@@ -2136,13 +2139,13 @@ var IMG_MAP = {
   'Estiramiento de Isquiotibiales': 'https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1560-yRYyfdA.gif',
 };
 var FALLBACK_EMOJI = {
-  warmup: '🔥', cooldown: '🧘', push: '💪', pull: '🏋', legs: '🦵',
-  core: '🧱', cardio: '🏃', bands: '🪢', default: '⚡'
+  warmup: '', cooldown: '', push: '', pull: '', legs: '',
+  core: '', cardio: '', bands: '', default: ''
 };
 // Specific emoji for exercises without DB images
 var EMOJI_OVERRIDE = {
-  'Postura del Niño': '🧘',
-  'Estiramiento de Pecho': '🤸',
+  'Postura del Niño': '',
+  'Estiramiento de Pecho': '',
 };
 
 
@@ -2174,15 +2177,15 @@ function getImg(name){
 function getEmoji(ex){
   if(EMOJI_OVERRIDE && EMOJI_OVERRIDE[ex.name]) return EMOJI_OVERRIDE[ex.name];
   var n = (ex.name||'').toLowerCase();
-  if(/plancha|plank|bird|dead bug|superman|crunch|twist|flutter|tijera|oblicuo/.test(n)) return '🧱';
-  if(/sentadilla|squat|zancada|lunge|split|pistol|wall sit/.test(n)) return '🦵';
-  if(/flexion|push|dip|press/.test(n)) return '💪';
-  if(/jumping|burpee|mountain|rodillas altas|salto/.test(n)) return '🏃';
-  if(/banda|band/.test(n)) return '🪢';
-  if(/glúteo|bridge|kickback|clamshell|paso lateral/.test(n)) return '🍑';
-  if(ex.phase==='warmup') return '🔥';
-  if(ex.phase==='cooldown') return '🧘';
-  return '⚡';
+  if(/plancha|plank|bird|dead bug|superman|crunch|twist|flutter|tijera|oblicuo/.test(n)) return '';
+  if(/sentadilla|squat|zancada|lunge|split|pistol|wall sit/.test(n)) return '';
+  if(/flexion|push|dip|press/.test(n)) return '';
+  if(/jumping|burpee|mountain|rodillas altas|salto/.test(n)) return '';
+  if(/banda|band/.test(n)) return '';
+  if(/glúteo|bridge|kickback|clamshell|paso lateral/.test(n)) return '';
+  if(ex.phase==='warmup') return '';
+  if(ex.phase==='cooldown') return '';
+  return '';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -2307,6 +2310,7 @@ function checkPin(){
 // ═══════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function(){
   var logo = document.getElementById('pin-logo'); if(logo) logo.innerHTML = icon('dumbbell',54);
+  if(typeof setNavIcons==='function') setNavIcons();
   profile = load('profile', null);
 
   // No onboarded profile -> wipe old data and run the onboarding wizard
@@ -2380,7 +2384,7 @@ function exportData(){
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 
-  showToast('✅ Backup descargado: ' + filename);
+  showToast(' Backup descargado: ' + filename);
 }
 
 function importData(event){
@@ -2394,7 +2398,7 @@ function importData(event){
 
       // Validate
       if(!backup.data || !backup.appName){
-        showToast('❌ Archivo inválido — no es un backup de FitCoach AI');
+        showToast(' Archivo inválido — no es un backup de FitCoach AI');
         return;
       }
 
@@ -2422,11 +2426,11 @@ function importData(event){
         }
       });
 
-      showToast('✅ Datos restaurados — recargando...');
+      showToast(' Datos restaurados — recargando...');
       setTimeout(function(){ window.location.reload(); }, 1200);
 
     } catch(err) {
-      showToast('❌ Error al leer el archivo: ' + err.message);
+      showToast(' Error al leer el archivo: ' + err.message);
       console.error(err);
     }
   };
@@ -2483,7 +2487,7 @@ function initHome(){
   var kwEl=document.getElementById('home-kcal-week');if(kwEl)kwEl.textContent=weekKcal;
 
   // Today chip
-  document.getElementById('today-chip-level').textContent = profile.level==='beginner' ? '🌱 Principiante' : '💪 Intermedio';
+  document.getElementById('today-chip-level').textContent = profile.level==='beginner' ? ' Principiante' : ' Intermedio';
   document.getElementById('today-chip-day').textContent = 'Día ' + (profile.weekDay||1);
 
   var todayWOs = load('today_workouts', null);
@@ -2502,11 +2506,11 @@ function initHome(){
   } else if(hasOptions){
     if(document.getElementById('today-title')) document.getElementById('today-title').textContent='3 rutinas listas para hoy';
     if(document.getElementById('today-sub'))   document.getElementById('today-sub').textContent='Generadas por Claude — elige la que más se ajuste.';
-    if(btn){ btn.innerHTML='<span>💪</span> Ver mis rutinas de hoy'; btn.onclick=function(){showPicker(todayWOs.workouts);}; }
+    if(btn){ btn.innerHTML='<span></span> Ver mis rutinas de hoy'; btn.onclick=function(){showPicker(todayWOs.workouts);}; }
   } else {
     if(document.getElementById('today-title')) document.getElementById('today-title').textContent='Sesión del día';
     if(document.getElementById('today-sub'))   document.getElementById('today-sub').textContent='Claude va a diseñar tu entrenamiento personalizado según tu historial y progreso.';
-    if(btn){ btn.innerHTML='<span>🤖</span> Generar rutinas para hoy'; btn.onclick=openWizard; }
+    if(btn){ btn.innerHTML='<span></span> Generar rutinas para hoy'; btn.onclick=openWizard; }
   }
 
   // Check missed days
@@ -2573,10 +2577,10 @@ function renderMissedDaysWarning(){
   if(missedDays.length > 0 || streakBroken){
     var msg = '';
     if(streakBroken && profile.streak === 0 && sessions.length > 0){
-      msg += '⚠️ Racha interrumpida. ';
+      msg += ' Racha interrumpida. ';
     }
     if(missedDays.length > 0){
-      msg += '📅 Días sin entrenar esta semana: ' + missedDays.join(', ') + '.';
+      msg += ' Días sin entrenar esta semana: ' + missedDays.join(', ') + '.';
     }
     el.textContent = msg;
     el.style.display = 'block';
@@ -2653,7 +2657,7 @@ function toggleProfWday(d){
 function saveProfWorkoutDays(){
   profile.workoutDaysPerWeek = (profile.workoutDays||[]).length;
   store('profile', profile);
-  showToast('✅ Días de entrenamiento guardados');
+  showToast(' Días de entrenamiento guardados');
 }
 
 function checkWeeklyPlanning(){
@@ -2709,7 +2713,7 @@ function saveWeekPlan(){
   profile.weekPlanDate = getWeekStart(new Date());
   store('profile', profile);
   document.getElementById('week-plan-modal').classList.remove('active');
-  showToast('✅ Plan semanal guardado — ' + pendingWdays.length + ' días');
+  showToast(' Plan semanal guardado — ' + pendingWdays.length + ' días');
   renderMissedDaysWarning();
 }
 
@@ -2731,10 +2735,10 @@ function showTodayCompleted(){
   var titleEl = document.getElementById('today-title');
   var subEl   = document.getElementById('today-sub');
   var btn     = document.getElementById('today-start-btn');
-  if(titleEl) titleEl.textContent = '✅ Workout completado hoy';
+  if(titleEl) titleEl.textContent = ' Workout completado hoy';
   if(subEl)   subEl.textContent   = '¡Gran trabajo! ¿Quieres hacer otro workout hoy?';
   if(btn){
-    btn.innerHTML = '<span>🔥</span> Otro workout hoy';
+    btn.innerHTML = '<span></span> Otro workout hoy';
     btn.style.background = 'var(--accent)';
     btn.onclick = function(){
       // Skip wizard (already done today), regenerate with existing data
@@ -2778,7 +2782,7 @@ function markWorkoutComplete(){
   profile.totalSessions = (profile.totalSessions||0) + 1;
   profile.weekDay = (profile.weekDay||1) + 1;
   store('profile', profile);
-  showToast('✅ ¡Workout completado!');
+  showToast(' ¡Workout completado!');
   // Navigate home and refresh
   navTo('home');
   initHome();
@@ -2809,7 +2813,7 @@ function confirmCompleteWorkout(){
   profile.totalSessions = (profile.totalSessions||0) + 1;
   profile.weekDay = (profile.weekDay||1) + 1;
   store('profile', profile);
-  showToast('✅ ¡Workout completado!');
+  showToast(' ¡Workout completado!');
   navTo('home');
   initHome();
 }
@@ -2867,21 +2871,21 @@ function renderHomeRecent(){
     return;
   }
   var recent = sessions.slice().reverse().slice(0, 5);
-  var focusIcon = {'Upper Body':'💪','Lower Body':'🦵','Full Body':'⚡','Core':'🧱'};
+  var focusIcon = {'Upper Body':'','Lower Body':'','Full Body':'','Core':''};
   var feedLabel = {easy:'Muy fácil',right:'Perfecto',hard:'Muy difícil'};
   var feedClass = {easy:'tag-easy',right:'tag-right',hard:'tag-hard'};
   var html = '';
   recent.forEach(function(s){
     var d = new Date(s.date);
     var dStr = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
-    var icon = focusIcon[s.focusArea] || '🏋️';
+    var icon = focusIcon[s.focusArea] || '';
     var iconBg = {'Upper Body':'rgba(124,107,255,.15)','Lower Body':'rgba(45,212,160,.15)','Full Body':'rgba(245,166,35,.12)','Core':'rgba(255,107,107,.12)'}[s.focusArea]||'var(--surface2)';
-    var resist = s.resistance ? ' · 😤 '+s.resistance+'/10' : '';
-    var enjoy  = s.enjoyment  ? ' · ❤️ '+s.enjoyment+'/10' : '';
+    var resist = s.resistance ? ' · '+s.resistance+'/10' : '';
+    var enjoy  = s.enjoyment  ? ' · '+s.enjoyment+'/10' : '';
     html += '<div class="home-sess-card">'
       +'<div class="home-sess-icon" style="background:'+iconBg+'">'+icon+'</div>'
       +'<div class="home-sess-body">'
-        +'<div style="display:flex;align-items:flex-start;gap:6px">'        +'<div class="home-sess-title" style="flex:1">'+(s.title||'Sesión')+'</div>'        +'<button onclick="deleteSession(\''+s.date+'\',event)" style="flex-shrink:0;background:none;border:none;color:var(--text3);font-size:15px;cursor:pointer;padding:2px 4px;opacity:.6" title="Eliminar sesión">🗑</button>'        +'</div>'
+        +'<div style="display:flex;align-items:flex-start;gap:6px">'        +'<div class="home-sess-title" style="flex:1">'+(s.title||'Sesión')+'</div>'        +'<button onclick="deleteSession(\''+s.date+'\',event)" style="flex-shrink:0;background:none;border:none;color:var(--text3);font-size:15px;cursor:pointer;padding:2px 4px;opacity:.6" title="Eliminar sesión"></button>'        +'</div>'
         +'<div class="home-sess-meta">'+dStr+' · '+(s.duration||0)+' min · '+(s.exercises||0)+' ejercicios</div>'
         +'<div class="home-sess-tags">'
           +(s.focusArea?'<span class="home-sess-tag tag-focus">'+(s.focusArea)+'</span>':'')
@@ -2904,7 +2908,7 @@ function renderLastSession(){
   var d = new Date(s.date);
   document.getElementById('lsc-date').textContent = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
   document.getElementById('lsc-name').textContent = s.title||'Sesión';
-  var feedTxt = {easy:'😊 Muy fácil', right:'💪 Perfecto', hard:'😮‍💨 Muy difícil'};
+  var feedTxt = {easy:' Muy fácil', right:' Perfecto', hard:'‍ Muy difícil'};
   document.getElementById('lsc-feedback').textContent = feedTxt[s.feedback]||'';
   document.getElementById('lsc-ex').textContent = s.exercises||0;
   document.getElementById('lsc-time').textContent = s.duration||0;
@@ -2940,8 +2944,8 @@ function renderHistory(){
     var d = new Date(s.date);
     var dateStr = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
     var feedClass = {easy:'easy',right:'right',hard:'hard'}[s.feedback]||'right';
-    var feedTxt = {easy:'😊 Muy fácil — ajuste en progreso',right:'💪 Intensidad perfecta',hard:'😮‍💨 Muy difícil — se reducirá'}[s.feedback]||'';
-    var resistInfo = s.resistance ? ' · 😤 '+s.resistance+'/10 · ❤️ '+( s.enjoyment||5)+'/10' : ''; html += '<div class="hist-session"><div class="hs-date">'+dateStr+(s.focusArea?' · '+(s.focusArea):'')+'</div><div class="hs-name">'+(s.title||'Sesión')+'</div><div class="hs-row"><div class="hs-chip"><strong>'+(s.exercises||0)+'</strong> ejercicios</div><div class="hs-chip"><strong>'+(s.duration||0)+'</strong> min</div><div class="hs-chip"><strong>'+(s.kcal||0)+'</strong> kcal</div></div><div class="hs-feedback '+feedClass+'">'+feedTxt+resistInfo+'</div></div>';
+    var feedTxt = {easy:' Muy fácil — ajuste en progreso',right:' Intensidad perfecta',hard:'‍ Muy difícil — se reducirá'}[s.feedback]||'';
+    var resistInfo = s.resistance ? ' · '+s.resistance+'/10 · '+( s.enjoyment||5)+'/10' : ''; html += '<div class="hist-session"><div class="hs-date">'+dateStr+(s.focusArea?' · '+(s.focusArea):'')+'</div><div class="hs-name">'+(s.title||'Sesión')+'</div><div class="hs-row"><div class="hs-chip"><strong>'+(s.exercises||0)+'</strong> ejercicios</div><div class="hs-chip"><strong>'+(s.duration||0)+'</strong> min</div><div class="hs-chip"><strong>'+(s.kcal||0)+'</strong> kcal</div></div><div class="hs-feedback '+feedClass+'">'+feedTxt+resistInfo+'</div></div>';
   });
   cont.innerHTML = html;
 }
@@ -2964,7 +2968,7 @@ function renderProfile(){
   document.getElementById('prof-name').textContent = profile.name||'';
   var d = new Date(profile.joinDate);
   document.getElementById('prof-since').textContent = 'Desde el '+d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
-  document.getElementById('prof-tier').textContent = profile.level==='beginner' ? '🌱 Principiante' : '💪 Intermedio';
+  document.getElementById('prof-tier').textContent = profile.level==='beginner' ? ' Principiante' : ' Intermedio';
   document.getElementById('prof-start-weight').textContent = (profile.startWeight||'—')+' kg';
   document.getElementById('prof-current-weight').textContent = (profile.currentWeight||'—')+' kg';
   document.getElementById('prof-goal-weight').textContent = (profile.goalWeight||'—')+' kg';
@@ -2999,8 +3003,8 @@ async function testApiKey(){
       headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body: JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'Hi'}]})
     });
-    if(res.ok){ showToast('✅ Clave API válida y funcionando'); }
-    else{ var e=await res.json().catch(function(){return{};});showToast('❌ Clave inválida: '+(e.error&&e.error.message||res.status)); }
+    if(res.ok){ showToast(' Clave API válida y funcionando'); }
+    else{ var e=await res.json().catch(function(){return{};});showToast(' Clave inválida: '+(e.error&&e.error.message||res.status)); }
   }catch(e){ showToast('Error de conexión: '+e.message); }
 }
 
@@ -3267,11 +3271,11 @@ function renderPicker(){
     // Cooldown summary
     var cdNames = (wo.cooldown||[]).map(function(e){return e.name;}).join(', ');
     if(cdNames){
-      exRows += '<div class="wopt-cooldown">🧘 Enfriamiento: '+esc(cdNames)+'</div>';
+      exRows += '<div class="wopt-cooldown"> Enfriamiento: '+esc(cdNames)+'</div>';
     }
     // Coach note
     if(wo.coachNote){
-      exRows += '<div class="wopt-coach-note">💬 '+esc(wo.coachNote)+'</div>';
+      exRows += '<div class="wopt-coach-note"> '+esc(wo.coachNote)+'</div>';
     }
 
     var totalEx = (wo.warmup||[]).length + (wo.exercises||[]).length + (wo.cooldown||[]).length;
@@ -3285,8 +3289,8 @@ function renderPicker(){
           +'<div class="wopt-desc">'+esc(wo.description||'')+'</div>'
           +'<div class="wopt-meta">'
             +'<span class="wopt-chip '+focusClass+'">'+focusEs+'</span>'
-            +'<span class="wopt-chip chip-duration">⏱ ~30 min</span>'
-            +'<span class="wopt-chip chip-kcal">🔥 ~'+kcal+' kcal</span>'
+            +'<span class="wopt-chip chip-duration"> ~30 min</span>'
+            +'<span class="wopt-chip chip-kcal"> ~'+kcal+' kcal</span>'
             +'<span class="wopt-chip chip-duration">'+totalEx+' ejercicios</span>'
           +'</div>'
         +'</div>'
@@ -3593,7 +3597,7 @@ function runPrepStep(step){
   updateExVisual(step);
   showPlayerBody();
   document.getElementById('timer-context').textContent = 'PREPÁRATE';
-  document.getElementById('timer-series-info').textContent = step.tip ? '💡 '+step.tip : 'Toma tu posición';
+  document.getElementById('timer-series-info').textContent = step.tip ? ' '+step.tip : 'Toma tu posición';
   document.getElementById('reps-display').style.display = 'none';
   var remaining = step.duration || 5;
   document.getElementById('timer-giant').textContent = remaining;
@@ -3667,7 +3671,7 @@ function renderNextUp(){
   // Skip rest steps for "next up" display
   while(ni < playerSteps.length && playerSteps[ni].type==='rest') ni++;
   var nu = ni < playerSteps.length ? playerSteps[ni] : null;
-  var icon = nu ? getEmoji(nu) : '🏁';
+  var icon = nu ? getEmoji(nu) : '';
   document.getElementById('nu-icon').textContent = icon;
   document.getElementById('nu-name').textContent = nu ? nu.name : 'Fin del workout';
   document.getElementById('nu-detail').textContent = nu && nu.type==='reps' ? (nu.totalSets+' series × '+nu.reps+' reps') : nu && nu.type==='timed' ? (nu.duration+'s') : '';
@@ -3756,7 +3760,7 @@ function togglePause(){
     lbl.textContent = 'Reanudar';
   } else {
     btn.classList.remove('paused');
-    icon.textContent = '⏸';
+    icon.textContent = '';
     lbl.textContent = 'Pausar';
   }
 }
@@ -3768,7 +3772,7 @@ function repeatSet(){
   showPlayerBody();
   playerPaused = false;
   var btn=document.getElementById('pause-btn'); if(btn) btn.classList.remove('paused');
-  var pi=document.getElementById('pause-icon'); if(pi) pi.textContent='⏸';
+  var pi=document.getElementById('pause-icon'); if(pi) pi.textContent='';
   var pl=document.getElementById('pause-label'); if(pl) pl.textContent='Pausar';
   runStep();
 }
@@ -3780,7 +3784,7 @@ function skipToNext(){
   showPlayerBody();
   playerPaused = false;
   var pb=document.getElementById('pause-btn'); if(pb) pb.classList.remove('paused');
-  var pi=document.getElementById('pause-icon'); if(pi) pi.textContent='⏸';
+  var pi=document.getElementById('pause-icon'); if(pi) pi.textContent='';
   var pl=document.getElementById('pause-label'); if(pl) pl.textContent='Pausar';
   nextStep();
 }
@@ -3884,7 +3888,7 @@ function finishFeedback(){
   // Level progression: beginner → intermediate after 20 sessions AND resistance consistently manageable
   if(profile.level==='beginner' && profile.totalSessions>=20 && resistance<=7 && selectedFeedback!=='hard'){
     profile.level = 'intermediate';
-    showToast('🎉 ¡Has avanzado a nivel Intermedio! Nuevos ejercicios desbloqueados.');
+    showToast(' ¡Has avanzado a nivel Intermedio! Nuevos ejercicios desbloqueados.');
   }
 
   store('profile', profile);
@@ -3954,11 +3958,11 @@ function saveMonthlyWeight(){
 
   var msg = '';
   if(delta > 0){
-    msg = '🎉 ¡Perdiste '+delta.toFixed(1)+' kg! Total: '+totalLost.toFixed(1)+' kg. IMC: '+newBMI.toFixed(1)+' ('+cat.label+')';
+    msg = ' ¡Perdiste '+delta.toFixed(1)+' kg! Total: '+totalLost.toFixed(1)+' kg. IMC: '+newBMI.toFixed(1)+' ('+cat.label+')';
   } else if(delta < 0){
-    msg = '📈 Subiste '+Math.abs(delta).toFixed(1)+' kg. El cuerpo fluctúa — sigue constante 💪';
+    msg = ' Subiste '+Math.abs(delta).toFixed(1)+' kg. El cuerpo fluctúa — sigue constante';
   } else {
-    msg = '⚖️ Peso estable. IMC: '+newBMI.toFixed(1)+'. Quedan '+kgToGoal.toFixed(1)+' kg para tu meta.';
+    msg = ' Peso estable. IMC: '+newBMI.toFixed(1)+'. Quedan '+kgToGoal.toFixed(1)+' kg para tu meta.';
   }
   showToast(msg);
 
@@ -3989,12 +3993,12 @@ function buildWizardSummaryHTML(d){
   // Sleep
   var sleepScore = d.sleep_score||5;
   var sleepCls = sleepScore>=7?'good':sleepScore>=5?'warn':'bad';
-  var sleepTxt = sleepScore+'/10'+(d.sleep_under6?' · Menos de 6h ⚠️':'');
+  var sleepTxt = sleepScore+'/10'+(d.sleep_under6?' · Menos de 6h':'');
 
   // Breakfast
-  var bkTxt = {no:'No desayuné ☕',light:'Algo ligero 🥑',yes:'Sí desayuné 🍳'}[d.breakfast]||(d.breakfast||'—');
+  var bkTxt = {no:'No desayuné',light:'Algo ligero',yes:'Sí desayuné'}[d.breakfast]||(d.breakfast||'—');
   if(d.breakfast_desc) bkTxt += ' — '+d.breakfast_desc;
-  if(d.had_bread) bkTxt += ' · 🍞 Pan';
+  if(d.had_bread) bkTxt += ' · Pan';
   var bkCls = d.had_bread?'bad':d.breakfast==='no'?'good':'neutral';
 
   // Water
@@ -4005,11 +4009,11 @@ function buildWizardSummaryHTML(d){
   // OJ
   var oj = d.oj_glasses||0;
   var ojCls = oj===0?'good':oj===1?'warn':'bad';
-  var ojTxt = oj===0?'No tomé ✅':oj+' vaso'+(oj>1?'s':'');
+  var ojTxt = oj===0?'No tomé':oj+' vaso'+(oj>1?'s':'');
 
   // Jet
   var jetL = d.jet_large||0, jetS = d.jet_small||0, jetT = jetL+jetS;
-  var jetTxt = jetT===0?'No tomé ✅':(jetL?jetL+' grande(s)':'')+( jetS?' '+(jetS)+' pequeño(s)':'');
+  var jetTxt = jetT===0?'No tomé':(jetL?jetL+' grande(s)':'')+( jetS?' '+(jetS)+' pequeño(s)':'');
   var jetCls = jetT===0?'good':jetT<=1?'warn':'bad';
 
   // Coke
@@ -4020,22 +4024,22 @@ function buildWizardSummaryHTML(d){
   // Dinner
   var dinVolMap = {small:'poco',medium:'normal',large:'mucho'};
   var dinVolStr = d.dinner_volume ? ' ('+( dinVolMap[d.dinner_volume]||d.dinner_volume)+')' : '';
-  var dinTxt = d.dinner==='no' ? 'No cené ✅'
-    : d.dinner==='light' ? 'Algo ligero 🥗'+(d.dinner_desc?' — '+d.dinner_desc:'')+dinVolStr
+  var dinTxt = d.dinner==='no' ? 'No cené'
+    : d.dinner==='light' ? 'Algo ligero'+(d.dinner_desc?' — '+d.dinner_desc:'')+dinVolStr
     : d.dinner==='full'  ? 'Cené: '+(d.dinner_desc||'?')+dinVolStr
     : (d.dinner||'—');
   var dinCls = d.dinner==='no'?'good':d.dinner==='light'?'warn':'bad';
 
   // Night snacking
-  var snackTxt = {no:'No piqué ✅',little:'Un poco 🍪',lot:'Bastante 😬'}[d.night_snack]||(d.night_snack||'—');
+  var snackTxt = {no:'No piqué',little:'Un poco',lot:'Bastante'}[d.night_snack]||(d.night_snack||'—');
   var snackCls = {no:'good',little:'warn',lot:'bad'}[d.night_snack]||'neutral';
 
   // Rice
-  var riceTxt = {no:'No, me controlé ✅',moderate:'Un poco 🍚',yes:'Bastante arroz 😬'}[d.excess_carbs]||(d.excess_carbs||'—');
+  var riceTxt = {no:'No, me controlé',moderate:'Un poco',yes:'Bastante arroz'}[d.excess_carbs]||(d.excess_carbs||'—');
   var riceCls = {no:'good',moderate:'warn',yes:'bad'}[d.excess_carbs]||'neutral';
 
   // Ate out
-  var outTxt = d.ate_out==='yes'?(d.ate_out_desc||'Sí comí fuera'):'No comí fuera ✅';
+  var outTxt = d.ate_out==='yes'?(d.ate_out_desc||'Sí comí fuera'):'No comí fuera';
   var outCls = d.ate_out==='yes'?'bad':'good';
 
   // Walk yesterday
@@ -4047,7 +4051,7 @@ function buildWizardSummaryHTML(d){
   var walkTodayCls = d.walk_today==='yes'?'good':'neutral';
 
   // Feeling
-  var feelTxt = {low:'Cansado 😴',ok:'Normal 😊',great:'Excelente ⚡'}[d.feeling]||(d.feeling||'—');
+  var feelTxt = {low:'Cansado',ok:'Normal',great:'Excelente'}[d.feeling]||(d.feeling||'—');
   var feelCls = {low:'warn',ok:'neutral',great:'good'}[d.feeling]||'neutral';
 
   // Hardcoded kcal preview
@@ -4063,16 +4067,16 @@ function buildWizardSummaryHTML(d){
     +'<div style="text-align:center"><div class="wsumm-kcal-out">'+kcalOut+'</div><div class="wsumm-kcal-lbl">kcal quemadas</div></div>'
     +'</div>';
 
-  html += '<div class="wsumm-note">🤖 Claude calculará las calorías de tus comidas y generará 3 workouts personalizados basados en estos datos.</div>';
+  html += '<div class="wsumm-note"> Claude calculará las calorías de tus comidas y generará 3 workouts personalizados basados en estos datos.</div>';
 
   // Today section
-  html += '<div class="wsumm-section"><div class="wsumm-section-title">☀️ Hoy</div>';
+  html += '<div class="wsumm-section"><div class="wsumm-section-title"> Hoy</div>';
   html += row('Calidad del sueño', sleepTxt, sleepCls);
   if(d.cheat_day==='yes'){
     var cheatCls = d.cheat_intensity==='wild'?'bad':d.cheat_intensity==='moderate'?'warn':'neutral';
-    var cheatTxt = {mild:'Leve 😊',moderate:'Moderado 😬',wild:'Extremo 🤯'}[d.cheat_intensity]||'Sí';
+    var cheatTxt = {mild:'Leve',moderate:'Moderado',wild:'Extremo'}[d.cheat_intensity]||'Sí';
     if(d.cheat_desc) cheatTxt += ' — '+d.cheat_desc.slice(0,60);
-    html += row('🍕 Cheat day ayer', cheatTxt, cheatCls);
+    html += row(' Cheat day ayer', cheatTxt, cheatCls);
   }
   html += row('Desayuno', bkTxt, bkCls);
   var lunchLabels = {skip:'No almorcé',light:'Ligero (~600 kcal)',normal:'Normal (~950 kcal)',heavy:'Abundante (~1300 kcal)'};
@@ -4083,7 +4087,7 @@ function buildWizardSummaryHTML(d){
   html += '</div>';
 
   // Yesterday section
-  html += '<div class="wsumm-section"><div class="wsumm-section-title">📅 Ayer</div>';
+  html += '<div class="wsumm-section"><div class="wsumm-section-title"> Ayer</div>';
   html += row('Caminata / trote', walkTxt, walkCls);
   html += row('Agua', waterTxt, waterCls);
   html += row('Jugo de naranja', ojTxt, ojCls);
@@ -4141,14 +4145,14 @@ function devClearToday(){
   keys=keys.filter(function(x){return x!==todayDateKey();}); 
   store('daylog_keys',keys);
   document.getElementById('dev-panel-modal').classList.remove('active');
-  showToast('✅ Check-in de hoy borrado');
+  showToast(' Check-in de hoy borrado');
   initHome();
 }
 function devClearWorkouts(){
   localStorage.removeItem('fc_today_workouts');
   localStorage.removeItem('fc_today_workout');
   document.getElementById('dev-panel-modal').classList.remove('active');
-  showToast('✅ Workouts de hoy borrados');
+  showToast(' Workouts de hoy borrados');
   initHome();
 }
 function devClearAllLogs(){
@@ -4157,7 +4161,7 @@ function devClearAllLogs(){
   keys.forEach(function(k){ localStorage.removeItem('fc_daylog_'+k); });
   store('daylog_keys',[]);
   document.getElementById('dev-panel-modal').classList.remove('active');
-  showToast('✅ Todos los check-ins borrados');
+  showToast(' Todos los check-ins borrados');
   initHome();
 }
 function devClearSessions(){
@@ -4166,7 +4170,7 @@ function devClearSessions(){
   profile.totalSessions=0; profile.streak=0; profile.weekDay=1;
   store('profile',profile);
   document.getElementById('dev-panel-modal').classList.remove('active');
-  showToast('✅ Sesiones borradas');
+  showToast(' Sesiones borradas');
   initHome();
 }
 function devShowData(){
@@ -4204,7 +4208,7 @@ function saveApiFromModal(){
   var profInput = document.getElementById('prof-apikey-input');
   if(profInput) profInput.value = val;
   closeApiModal();
-  showToast('✅ Clave guardada');
+  showToast(' Clave guardada');
   // Re-trigger whatever was waiting
   setTimeout(function(){ startGenFromSummary(); }, 300);
 }
@@ -4351,7 +4355,7 @@ function showWizStep(n){
 
   // Next button label
   var nxtBtn=document.getElementById('wiz-next-btn');
-  if(nxtBtn) nxtBtn.textContent = WIZ_ORDER.indexOf(n) >= WIZ_ORDER.length-1 ? '✅ Ver resumen del día' : 'Continuar →';
+  if(nxtBtn) nxtBtn.textContent = WIZ_ORDER.indexOf(n) >= WIZ_ORDER.length-1 ? ' Ver resumen del día' : 'Continuar →';
 
   // Scroll to top
   var body=document.getElementById('wizard-body');
@@ -4563,7 +4567,7 @@ async function wizFinish(){
   // Jet / energy drinks
   var jet = wizData.jet_count||0;
   hardcoded_kcal_in += jet * KCAL.jet_zero;
-  if(jet>=2) flags.push('⚠️ '+jet+' energéticas: puede afectar sueño y cortisol');
+  if(jet>=2) flags.push(' '+jet+' energéticas: puede afectar sueño y cortisol');
 
   // Coke zero — almost zero calories but flag habit
   if((wizData.coke_zero||0)>=2) flags.push('Coca Zero en exceso: ácidos pueden afectar metabolismo');
@@ -4571,7 +4575,7 @@ async function wizFinish(){
   // Night snacking
   if(wizData.night_snack==='little') hardcoded_kcal_in += KCAL.night_snack_little;
   if(wizData.night_snack==='lot')    hardcoded_kcal_in += KCAL.night_snack_lot;
-  if(wizData.night_snack==='lot') flags.push('⚠️ Picar de noche: +'+(KCAL.night_snack_lot)+' kcal estimadas');
+  if(wizData.night_snack==='lot') flags.push(' Picar de noche: +'+(KCAL.night_snack_lot)+' kcal estimadas');
 
   // Bread
   if(wizData.had_bread) hardcoded_kcal_in += KCAL.bread_2sl;
@@ -4583,13 +4587,13 @@ async function wizFinish(){
   // Sleep penalty flag
   var sleepScore = wizData.sleep_score||5;
   var sleepUnder6 = wizData.sleep_under6;
-  if(sleepUnder6||sleepScore<=4) flags.push('⚠️ Sueño insuficiente: eleva cortisol, dificulta quema de grasa');
+  if(sleepUnder6||sleepScore<=4) flags.push(' Sueño insuficiente: eleva cortisol, dificulta quema de grasa');
 
   // Water bonus
   var water = wizData.water_glasses||0;
-  if(water>=4) flags.push('✅ '+water+' botellas de agua: bien hidratado');
-  else if(water>=2) flags.push('⚠️ Solo '+water+' botella'+(water===1?'':'s')+' de agua — intenta llegar a 4');
-  else if(water<2) flags.push('🔴 Muy poca agua: '+water+' botellas — riesgo de deshidratación');
+  if(water>=4) flags.push(' '+water+' botellas de agua: bien hidratado');
+  else if(water>=2) flags.push(' Solo '+water+' botella'+(water===1?'':'s')+' de agua — intenta llegar a 4');
+  else if(water<2) flags.push(' Muy poca agua: '+water+' botellas — riesgo de deshidratación');
 
   // Walk/jog burn (yesterday)
   var walkMin = wizData.walk_duration||0;
@@ -4628,7 +4632,7 @@ function showWizardSummary(data){
     renderDayScoreInSummary(data.score);
     var calcBtn = document.getElementById('summ-calc-btn');
     if(calcBtn){
-      calcBtn.textContent = '📊 ✅ Estadísticas ya calculadas';
+      calcBtn.textContent = ' Estadísticas ya calculadas';
       calcBtn.style.borderColor = 'var(--green)';
       calcBtn.style.color = 'var(--green)';
       calcBtn.disabled = true;
@@ -4648,17 +4652,17 @@ async function calcYesterdayStats(){
   var dayData = load('daylog_'+todayKey, wizData);
   if(!profile.apiKey){ showApiKeyModal(); return; }
   var btn = document.getElementById('summ-calc-btn');
-  if(btn){ btn.textContent = '⏳ Calculando...'; btn.disabled = true; }
+  if(btn){ btn.textContent = ' Calculando...'; btn.disabled = true; }
   try {
     var result = await scoreDay(dayData);
     dayData.score = result;
     dayData.statsCalculated = true;
     store('daylog_'+todayKey, dayData);
     renderDayScoreInSummary(result);
-    if(btn){ btn.textContent = '📊 ✅ Estadísticas calculadas'; btn.style.borderColor='var(--green)'; btn.style.color='var(--green)'; btn.disabled=true; }
-    showToast('✅ Estadísticas calculadas — toca "Crear rutinas" para continuar');
+    if(btn){ btn.textContent = ' Estadísticas calculadas'; btn.style.borderColor='var(--green)'; btn.style.color='var(--green)'; btn.disabled=true; }
+    showToast(' Estadísticas calculadas — toca "Crear rutinas" para continuar');
   } catch(e){
-    if(btn){ btn.textContent = '📊 Calcular estadísticas de ayer'; btn.disabled = false; }
+    if(btn){ btn.textContent = ' Calcular estadísticas de ayer'; btn.disabled = false; }
     showToast('Error: '+e.message);
     console.error(e);
   }
@@ -4680,7 +4684,7 @@ function renderDayScoreInSummary(score){
     +'<div class="dsc-stat"><div class="dsc-stat-val" style="color:var(--accent2)">'+(score.score||0)+'</div><div class="dsc-stat-lbl">score</div></div>'
     +'</div>'
     +(badges ? '<div class="dsc-badges">'+badges+'</div>' : '')
-    +(score.coach_message ? '<div style="padding:10px 16px 14px;font-size:13px;color:var(--text2);font-style:italic;border-top:1px solid var(--border)">💬 '+score.coach_message+'</div>' : '')
+    +(score.coach_message ? '<div style="padding:10px 16px 14px;font-size:13px;color:var(--text2);font-style:italic;border-top:1px solid var(--border)"> '+score.coach_message+'</div>' : '')
     +'</div>';
   var body = document.getElementById('wiz-summary-body');
   if(body){
@@ -4716,7 +4720,7 @@ async function scoreDay(dayData){
     'SCORING: bread(-8),OJ per glass(-5),ate out(-15),excess carbs(-10),snack little(-8) lot(-18),sleep<6h(-15),sleep<=4(-10),water<2 bottles(-10),2-3 bottles(-5),jet>=2(-8). Bonuses: no dinner(+10),walk 45min+(+15),walk 30min(+10),water>=4 bottles(+8),3 bottles(+4),no snack(+5),no bread(+5),no OJ(+5),sleep>=7(+10),no eating out(+8).',
     'Calculate calories for breakfast_desc, dinner_desc, ate_out_desc. Lunch is already '+( dayData.lunch_kcal||950)+' kcal.',
     'Total kcal_in_total = hardcoded_kcal_in + lunch_kcal + breakfast_kcal + dinner_kcal + ate_out_kcal.',
-    'Return ONLY: {"score":75,"grade":"B","gradeEmoji":"✅","kcal_in_hardcoded":280,"kcal_in_ai":350,"kcal_in_lunch":950,"kcal_in_total":1580,"kcal_out_exercise":0,"kcal_out_walk":220,"kcal_out_total":220,"kcal_net":-1360,"deficit":false,"summary":"Una oración en español.","coach_message":"Mensaje para Gilberth.","badges":[{"text":"Ejemplo","type":"green"}],"ai_kcal_breakdown":{"breakfast_kcal":350,"dinner_kcal":0,"ate_out_kcal":0}}'
+    'Return ONLY: {"score":75,"grade":"B","gradeEmoji":"","kcal_in_hardcoded":280,"kcal_in_ai":350,"kcal_in_lunch":950,"kcal_in_total":1580,"kcal_out_exercise":0,"kcal_out_walk":220,"kcal_out_total":220,"kcal_net":-1360,"deficit":false,"summary":"Una oración en español.","coach_message":"Mensaje para Gilberth.","badges":[{"text":"Ejemplo","type":"green"}],"ai_kcal_breakdown":{"breakfast_kcal":350,"dinner_kcal":0,"ate_out_kcal":0}}'
   ].join('\n');
   var res = await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
@@ -4859,14 +4863,14 @@ async function scoreAndGenerate(dayData){
     '## SCORING METHODOLOGY',
     'Score 0-100 for YESTERDAY. Deductions: bread (-8), excess OJ per glass (-5), ate out (-15), excess carbs (-10), night snack little (-8) lot (-18), sleep <6h (-15), sleep score ≤4 (-10), water <2 bottles (-10), water 2-3 bottles (-5), jet ≥2 (-8).',
     'Bonuses: no dinner (+10), walk 45min+ (+15), walk 30min (+10), water ≥4 bottles (+8), water 3 bottles (+4), no night snack (+5), no bread (+5), no OJ (+5), sleep ≥7 (+10), no eating out (+8).',
-    'Grade: 90-100=A⭐, 75-89=B✅, 60-74=C⚠️, 45-59=D😬, <45=F🔴.',
+    'Grade: 90-100=A, 75-89=B, 60-74=C, 45-59=D, <45=F.',
     '',
     '## FOR AI-CALCULATED CALORIES (use standard nutritional values)',
     'Calculate calories for: breakfast food described, dinner food described, eating out food described.',
     'Use realistic portions. If volume="large" add 40%. Be specific with your estimates.',
     '',
     '## REQUIRED JSON OUTPUT (no markdown, only JSON)',
-    '{"dayScore":{"score":82,"grade":"B","gradeEmoji":"✅","kcal_in_hardcoded":280,"kcal_in_ai":450,"kcal_in_total":730,"kcal_out_exercise":220,"kcal_out_walk":190,"kcal_out_total":410,"kcal_net":-320,"deficit":true,"summary":"Buen día en general. El jugo y la cena pesada sumaron calorías extra, pero la caminata ayudó a compensar.","coach_message":"Gilberth, ayer fue un día sólido. Controla el jugo y a destruirlo hoy.","badges":[{"text":"Sin cena ✅","type":"green"},{"text":"Caminata 45min ✅","type":"green"},{"text":"Pan 🍞","type":"amber"},{"text":"OJ x2 ⚠️","type":"amber"}],"ai_kcal_breakdown":{"breakfast_desc":"2 huevos + pan","breakfast_kcal":350,"dinner_desc":"arroz con pollo","dinner_kcal":550,"ate_out_desc":"","ate_out_kcal":0}},"workouts":[{"title":"string","description":"string","focusArea":"string","estimatedKcal":220,"warmup":[{"name":"string","duration":60,"description":"string"}],"exercises":[{"name":"string","sets":3,"reps":12,"restSeconds":45,"tip":"string","modification":"string"}],"cooldown":[{"name":"string","duration":45,"description":"string"}],"coachNote":"string"},{"title":"string","description":"string","focusArea":"string","estimatedKcal":250,"warmup":[],"exercises":[],"cooldown":[],"coachNote":"string"},{"title":"string","description":"string","focusArea":"string","estimatedKcal":230,"warmup":[],"exercises":[],"cooldown":[],"coachNote":"string"}]}',
+    '{"dayScore":{"score":82,"grade":"B","gradeEmoji":"","kcal_in_hardcoded":280,"kcal_in_ai":450,"kcal_in_total":730,"kcal_out_exercise":220,"kcal_out_walk":190,"kcal_out_total":410,"kcal_net":-320,"deficit":true,"summary":"Buen día en general. El jugo y la cena pesada sumaron calorías extra, pero la caminata ayudó a compensar.","coach_message":"Gilberth, ayer fue un día sólido. Controla el jugo y a destruirlo hoy.","badges":[{"text":"Sin cena","type":"green"},{"text":"Caminata 45min","type":"green"},{"text":"Pan","type":"amber"},{"text":"OJ x2","type":"amber"}],"ai_kcal_breakdown":{"breakfast_desc":"2 huevos + pan","breakfast_kcal":350,"dinner_desc":"arroz con pollo","dinner_kcal":550,"ate_out_desc":"","ate_out_kcal":0}},"workouts":[{"title":"string","description":"string","focusArea":"string","estimatedKcal":220,"warmup":[{"name":"string","duration":60,"description":"string"}],"exercises":[{"name":"string","sets":3,"reps":12,"restSeconds":45,"tip":"string","modification":"string"}],"cooldown":[{"name":"string","duration":45,"description":"string"}],"coachNote":"string"},{"title":"string","description":"string","focusArea":"string","estimatedKcal":250,"warmup":[],"exercises":[],"cooldown":[],"coachNote":"string"},{"title":"string","description":"string","focusArea":"string","estimatedKcal":230,"warmup":[],"exercises":[],"cooldown":[],"coachNote":"string"}]}',
     'IMPORTANT: Fill all 3 workouts completely. Use EXACTLY the exercise names from AVAILABLE EXERCISES. All text in Spanish.',
   ].join('\n');
 
@@ -4896,6 +4900,7 @@ async function scoreAndGenerate(dayData){
   var jsonMatch = raw.match(/\{[\s\S]*\}/);
   if(!jsonMatch) throw new Error('Respuesta inválida de Claude');
   var parsed = JSON.parse(jsonMatch[0]);
+  parsed = deepStripEmoji(parsed);
 
   // Save day score to daylog — use dayData.dateKey not wizData (may differ)
   // Use pre-calculated score if stats were already run, else Claude's score
@@ -4943,7 +4948,7 @@ function renderDayScore(score){
       +'<div class="dsc-stat"><div class="dsc-stat-val" style="color:var(--accent2)">'+(score.score||0)+'</div><div class="dsc-stat-lbl">score</div></div>'
     +'</div>'
     +(badges?'<div class="dsc-badges">'+badges+'</div>':'')
-    +(score.coach_message?'<div style="padding:10px 16px 14px;font-size:13px;color:var(--text2);font-style:italic;border-top:1px solid var(--border)">💬 '+score.coach_message+'</div>':'');
+    +(score.coach_message?'<div style="padding:10px 16px 14px;font-size:13px;color:var(--text2);font-style:italic;border-top:1px solid var(--border)"> '+score.coach_message+'</div>':'');
 }
 
 
@@ -4959,26 +4964,26 @@ var expandedHabitDay   = null;
 // ─── BADGE DEFINITIONS ───
 var ALL_BADGES = [
   // Workout badges
-  {id:'first_workout', icon:'🏋️', name:'Primera sesión', desc:'Completa tu primer workout', cat:'workout', req:function(s,l){ return s.length>=1; }},
-  {id:'week_warrior',  icon:'⚡', name:'Guerrero semanal', desc:'7 sesiones de workout', cat:'workout', req:function(s,l){ return s.length>=7; }},
-  {id:'month_beast',   icon:'💪', name:'Bestia del mes',  desc:'20 sesiones completadas', cat:'workout', req:function(s,l){ return s.length>=20; }},
-  {id:'streak_3',      icon:'🔥', name:'Racha de 3',      desc:'3 días seguidos de workout', cat:'streak', req:function(s,l,p){ return (p.streak||0)>=3; }},
-  {id:'streak_7',      icon:'🔥🔥',name:'Racha de 7',     desc:'7 días seguidos', cat:'streak', req:function(s,l,p){ return (p.streak||0)>=7; }},
-  {id:'streak_30',     icon:'👑', name:'Rey del mes',     desc:'30 días seguidos', cat:'streak', req:function(s,l,p){ return (p.streak||0)>=30; }},
+  {id:'first_workout', icon:'', name:'Primera sesión', desc:'Completa tu primer workout', cat:'workout', req:function(s,l){ return s.length>=1; }},
+  {id:'week_warrior',  icon:'', name:'Guerrero semanal', desc:'7 sesiones de workout', cat:'workout', req:function(s,l){ return s.length>=7; }},
+  {id:'month_beast',   icon:'', name:'Bestia del mes',  desc:'20 sesiones completadas', cat:'workout', req:function(s,l){ return s.length>=20; }},
+  {id:'streak_3',      icon:'', name:'Racha de 3',      desc:'3 días seguidos de workout', cat:'streak', req:function(s,l,p){ return (p.streak||0)>=3; }},
+  {id:'streak_7',      icon:'',name:'Racha de 7',     desc:'7 días seguidos', cat:'streak', req:function(s,l,p){ return (p.streak||0)>=7; }},
+  {id:'streak_30',     icon:'', name:'Rey del mes',     desc:'30 días seguidos', cat:'streak', req:function(s,l,p){ return (p.streak||0)>=30; }},
   // Weight badges
-  {id:'first_kg',   icon:'⚖️', name:'Primer kilo',      desc:'Pierde tu primer kg', cat:'weight', req:function(s,l,p){ return ((p.startWeight||98)-(p.currentWeight||98))>=1; }},
-  {id:'five_kg',    icon:'🌟', name:'5 kilos menos',    desc:'Pierde 5 kg', cat:'weight', req:function(s,l,p){ return ((p.startWeight||98)-(p.currentWeight||98))>=5; }},
-  {id:'ten_kg',     icon:'🏆', name:'10 kilos menos',   desc:'Pierde 10 kg', cat:'weight', req:function(s,l,p){ return ((p.startWeight||98)-(p.currentWeight||98))>=10; }},
-  {id:'halfway',    icon:'🎯', name:'A mitad del camino',desc:'50% del peso objetivo alcanzado', cat:'weight', req:function(s,l,p){ var lost=(p.startWeight||98)-(p.currentWeight||98); var total=(p.startWeight||98)-(p.goalWeight||75); return lost/Math.max(1,total)>=0.5; }},
+  {id:'first_kg',   icon:'', name:'Primer kilo',      desc:'Pierde tu primer kg', cat:'weight', req:function(s,l,p){ return ((p.startWeight||98)-(p.currentWeight||98))>=1; }},
+  {id:'five_kg',    icon:'', name:'5 kilos menos',    desc:'Pierde 5 kg', cat:'weight', req:function(s,l,p){ return ((p.startWeight||98)-(p.currentWeight||98))>=5; }},
+  {id:'ten_kg',     icon:'', name:'10 kilos menos',   desc:'Pierde 10 kg', cat:'weight', req:function(s,l,p){ return ((p.startWeight||98)-(p.currentWeight||98))>=10; }},
+  {id:'halfway',    icon:'', name:'A mitad del camino',desc:'50% del peso objetivo alcanzado', cat:'weight', req:function(s,l,p){ var lost=(p.startWeight||98)-(p.currentWeight||98); var total=(p.startWeight||98)-(p.goalWeight||75); return lost/Math.max(1,total)>=0.5; }},
   // Habit badges
-  {id:'no_bread_week',  icon:'🚫🍞', name:'Sin pan',      desc:'7 días seguidos sin pan', cat:'habit', req:function(s,l){ return checkStreak(l,'had_bread',false,7); }},
-  {id:'water_hero',     icon:'💧',   name:'Hidratado',    desc:'8+ vasos de agua 5 días seguidos', cat:'habit', req:function(s,l){ return checkStreakWater(l,4,5); }},
-  {id:'no_snack_week',  icon:'🌙✅', name:'Sin picar',    desc:'5 noches sin picar', cat:'habit', req:function(s,l){ return checkStreak(l,'night_snack','no',5); }},
-  {id:'walk_5days',     icon:'🚶',   name:'Caminante',    desc:'Camina 5 días en una semana', cat:'habit', req:function(s,l){ return walkDaysInWeek(l,5); }},
-  {id:'walk_45min',     icon:'🏃',   name:'Distancia real',desc:'Camina 45+ min en un día', cat:'habit', req:function(s,l){ return l.some(function(lg){ return (lg.walk_duration||0)>=45||(lg.walk_today_duration||0)>=45; }); }},
-  {id:'perfect_day',    icon:'⭐',   name:'Día perfecto', desc:'Score de 90+ en un día', cat:'habit', req:function(s,l){ return l.some(function(lg){ return lg.score&&(lg.score.score||0)>=90; }); }},
-  {id:'no_eating_out',  icon:'🏠',   name:'Cocinero casero',desc:'7 días sin comer fuera', cat:'habit', req:function(s,l){ return checkStreak(l,'ate_out','no',7); }},
-  {id:'good_sleep',     icon:'😴',   name:'Buen descanso', desc:'Sueño 7+ por 5 días', cat:'habit', req:function(s,l){ return checkStreakSleep(l,7,5); }},
+  {id:'no_bread_week',  icon:'', name:'Sin pan',      desc:'7 días seguidos sin pan', cat:'habit', req:function(s,l){ return checkStreak(l,'had_bread',false,7); }},
+  {id:'water_hero',     icon:'',   name:'Hidratado',    desc:'8+ vasos de agua 5 días seguidos', cat:'habit', req:function(s,l){ return checkStreakWater(l,4,5); }},
+  {id:'no_snack_week',  icon:'', name:'Sin picar',    desc:'5 noches sin picar', cat:'habit', req:function(s,l){ return checkStreak(l,'night_snack','no',5); }},
+  {id:'walk_5days',     icon:'',   name:'Caminante',    desc:'Camina 5 días en una semana', cat:'habit', req:function(s,l){ return walkDaysInWeek(l,5); }},
+  {id:'walk_45min',     icon:'',   name:'Distancia real',desc:'Camina 45+ min en un día', cat:'habit', req:function(s,l){ return l.some(function(lg){ return (lg.walk_duration||0)>=45||(lg.walk_today_duration||0)>=45; }); }},
+  {id:'perfect_day',    icon:'',   name:'Día perfecto', desc:'Score de 90+ en un día', cat:'habit', req:function(s,l){ return l.some(function(lg){ return lg.score&&(lg.score.score||0)>=90; }); }},
+  {id:'no_eating_out',  icon:'',   name:'Cocinero casero',desc:'7 días sin comer fuera', cat:'habit', req:function(s,l){ return checkStreak(l,'ate_out','no',7); }},
+  {id:'good_sleep',     icon:'',   name:'Buen descanso', desc:'Sueño 7+ por 5 días', cat:'habit', req:function(s,l){ return checkStreakSleep(l,7,5); }},
 ];
 
 function checkStreak(logs, key, goodVal, days){
@@ -5181,28 +5186,28 @@ function calSelectDay(dateKey){
       var focus = s.focusArea || '';
       var dur   = s.duration || 0;
       var kcal  = s.kcal || 0;
-      var fb    = {great:'Excelente 🔥',good:'Bien 👍',right:'Bien 👍',hard:'Duro 😅',easy:'Fácil 😊'}[s.feedback] || '';
+      var fb    = {great:'Excelente',good:'Bien',right:'Bien',hard:'Duro',easy:'Fácil'}[s.feedback] || '';
       bodyHtml += '<div class="cal-session-card" data-sess-date="'+s.date+'">'
         + '<div style="display:flex;align-items:flex-start;gap:8px">'
         + '<div style="flex:1">'
         + '<div class="cal-session-title">'+title+'</div>'
         + (focus ? '<div style="font-size:11px;color:var(--accent2);margin-top:2px;font-weight:700">'+focus+'</div>' : '')
         + '<div class="cal-session-meta">'
-        + (dur  ? '<span>⏱ '+dur+' min</span>' : '')
-        + (kcal ? '<span>🔥 '+kcal+' kcal</span>' : '')
+        + (dur  ? '<span> '+dur+' min</span>' : '')
+        + (kcal ? '<span> '+kcal+' kcal</span>' : '')
         + (fb   ? '<span>'+fb+'</span>' : '')
         + '</div>'
         + '</div>'
-        + '<button class="cal-delete-btn" data-sess-date="'+s.date+'" style="background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer;padding:2px;opacity:.6">🗑</button>'
+        + '<button class="cal-delete-btn" data-sess-date="'+s.date+'" style="background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer;padding:2px;opacity:.6"></button>'
         + '</div>'
         + '</div>';
     });
   } else if(isFuture){
-    bodyHtml = isScheduled ? '<div class="cal-rest-msg">📅 Día planificado</div>' : '<div class="cal-rest-msg">😴 Día de descanso</div>';
+    bodyHtml = isScheduled ? '<div class="cal-rest-msg"> Día planificado</div>' : '<div class="cal-rest-msg"> Día de descanso</div>';
   } else if(isToday){
-    bodyHtml = isScheduled ? '<div class="cal-rest-msg">💪 ¡Hoy toca entrenar!</div>' : '<div class="cal-rest-msg">😴 Día de descanso</div>';
+    bodyHtml = isScheduled ? '<div class="cal-rest-msg"> ¡Hoy toca entrenar!</div>' : '<div class="cal-rest-msg"> Día de descanso</div>';
   } else {
-    bodyHtml = isScheduled ? '<div class="cal-missed-msg">❌ No completado</div>' : '<div class="cal-rest-msg">😴 Día de descanso</div>';
+    bodyHtml = isScheduled ? '<div class="cal-missed-msg"> No completado</div>' : '<div class="cal-rest-msg"> Día de descanso</div>';
   }
 
   var detailBody = document.getElementById('cal-detail-body');
@@ -5257,7 +5262,7 @@ function renderHabitsPanel(){
     var walkDays=logs.filter(function(l){return l.walk_yday==='yes'||l.walk_today==='yes';}).length;
 
     setEl('sh-sleep',avgSleep.toFixed(1)+'/10');
-    setEl('sh-sleep-sub', avgSleep>=7?'✅ Buen descanso':avgSleep>=5?'⚠️ Puede mejorar':'🔴 Insuficiente');
+    setEl('sh-sleep-sub', avgSleep>=7?' Buen descanso':avgSleep>=5?' Puede mejorar':' Insuficiente');
     setEl('sh-water',avgWater.toFixed(1));
     setEl('sh-kcal-deficit',avgDeficit);
     setEl('sh-kcal-sub',daysDeficit+' de '+logs.length+' días con déficit');
@@ -5286,15 +5291,15 @@ function renderHabitsPanel(){
   // Habit frequency chart
   var total=Math.max(1,logs.length);
   var freqs=[
-    {label:'🍞 Pan',      pct:Math.round(logs.filter(function(l){return l.had_bread;}).length/total*100)},
-    {label:'🥤 OJ 2+',   pct:Math.round(logs.filter(function(l){return (l.oj_glasses||0)>=2;}).length/total*100)},
-    {label:'🌙 Picó',     pct:Math.round(logs.filter(function(l){return l.night_snack&&l.night_snack!=='no';}).length/total*100)},
-    {label:'🍔 Salió',    pct:Math.round(logs.filter(function(l){return l.ate_out==='yes';}).length/total*100)},
-    {label:'💧 8v agua',  pct:Math.round(logs.filter(function(l){return (l.water_glasses||0)>=4;}).length/total*100)},
-    {label:'🚶 Caminó',   pct:Math.round(logs.filter(function(l){return l.walk_yday==='yes'||l.walk_today==='yes';}).length/total*100)},
+    {label:' Pan',      pct:Math.round(logs.filter(function(l){return l.had_bread;}).length/total*100)},
+    {label:' OJ 2+',   pct:Math.round(logs.filter(function(l){return (l.oj_glasses||0)>=2;}).length/total*100)},
+    {label:' Picó',     pct:Math.round(logs.filter(function(l){return l.night_snack&&l.night_snack!=='no';}).length/total*100)},
+    {label:' Salió',    pct:Math.round(logs.filter(function(l){return l.ate_out==='yes';}).length/total*100)},
+    {label:' 8v agua',  pct:Math.round(logs.filter(function(l){return (l.water_glasses||0)>=4;}).length/total*100)},
+    {label:' Caminó',   pct:Math.round(logs.filter(function(l){return l.walk_yday==='yes'||l.walk_today==='yes';}).length/total*100)},
   ];
   var freqHtml=freqs.map(function(f){
-    var cls=f.label.indexOf('💧')>=0||f.label.indexOf('🚶')>=0?'good':f.pct>50?'bad':f.pct>25?'warn':'ok';
+    var cls=f.label.indexOf('')>=0||f.label.indexOf('')>=0?'good':f.pct>50?'bad':f.pct>25?'warn':'ok';
     return '<div class="bar-row"><div class="bar-label" style="width:80px;text-align:left;font-size:11px">'+f.label+'</div>'
       +'<div class="bar-track"><div class="bar-fill '+cls+'" style="width:'+f.pct+'%"></div></div>'
       +'<div class="bar-val">'+f.pct+'%</div></div>';
@@ -5315,13 +5320,13 @@ function renderHabitsPanel(){
       var defStr=score?(score.deficit?'▼ -'+Math.abs(score.kcal_net||0)+' kcal':'▲ +'+Math.abs(score.kcal_net||0)+' kcal'):'—';
       var defColor=score&&score.deficit?'var(--green)':'var(--red)';
       var quickFlags=[];
-      if(l.had_bread) quickFlags.push('🍞');
-      if((l.oj_glasses||0)>=2) quickFlags.push('🥤×'+(l.oj_glasses||0));
-      if(l.night_snack&&l.night_snack!=='no') quickFlags.push('🌙');
-      if(l.ate_out==='yes') quickFlags.push('🍔');
-      if((l.water_glasses||0)>=4) quickFlags.push('💧✅');
-      if(l.walk_yday==='yes'||l.walk_today==='yes') quickFlags.push('🚶');
-      if(l.sleep_under6) quickFlags.push('😵');
+      if(l.had_bread) quickFlags.push('');
+      if((l.oj_glasses||0)>=2) quickFlags.push('×'+(l.oj_glasses||0));
+      if(l.night_snack&&l.night_snack!=='no') quickFlags.push('');
+      if(l.ate_out==='yes') quickFlags.push('');
+      if((l.water_glasses||0)>=4) quickFlags.push('');
+      if(l.walk_yday==='yes'||l.walk_today==='yes') quickFlags.push('');
+      if(l.sleep_under6) quickFlags.push('');
 
       listHtml+='<div class="habit-row" onclick="toggleHabitDetail(\'hd-'+idx+'\')">'
         +'<div class="habit-grade '+gradeClass+'">'+(grade||'?')+'</div>'
@@ -5350,11 +5355,11 @@ function buildHabitDetailRows(l){
     {label:'Agua', val:(l.water_glasses||0)+' botellas', cls:(l.water_glasses||0)>=4?'good':(l.water_glasses||0)>=2?'neutral':'bad'},
     {label:'Jugo naranja', val:(l.oj_glasses||0)+' vasos (+'+((l.oj_glasses||0)*120)+' kcal)', cls:(l.oj_glasses||0)===0?'good':(l.oj_glasses||0)<=1?'neutral':'bad'},
     {label:'Jet Zero / Energéticas', val:(l.jet_count||0)+' latas', cls:(l.jet_count||0)<=1?'neutral':'bad'},
-    {label:'Pan en desayuno', val:l.had_bread?'Sí 🍞':'No ✅', cls:l.had_bread?'bad':'good'},
-    {label:'Cena', val:{no:'No cenó ✅',light:'Algo ligero',full:'Cena completa'}[l.dinner]||(l.dinner||'—'), cls:{no:'good',light:'neutral',full:'bad'}[l.dinner]||'neutral'},
-    {label:'Picar de noche', val:{no:'No ✅',little:'Un poco',lot:'Bastante'}[l.night_snack]||(l.night_snack||'—'), cls:{no:'good',little:'neutral',lot:'bad'}[l.night_snack]||'neutral'},
-    {label:'Arroz/harinas extra', val:{no:'No ✅',moderate:'Moderado',yes:'Sí'}[l.excess_carbs]||(l.excess_carbs||'—'), cls:{no:'good',moderate:'neutral',yes:'bad'}[l.excess_carbs]||'neutral'},
-    {label:'Comió fuera', val:l.ate_out==='yes'?(l.ate_out_desc||'Sí'):'No ✅', cls:l.ate_out==='yes'?'bad':'good'},
+    {label:'Pan en desayuno', val:l.had_bread?'Sí':'No', cls:l.had_bread?'bad':'good'},
+    {label:'Cena', val:{no:'No cenó',light:'Algo ligero',full:'Cena completa'}[l.dinner]||(l.dinner||'—'), cls:{no:'good',light:'neutral',full:'bad'}[l.dinner]||'neutral'},
+    {label:'Picar de noche', val:{no:'No',little:'Un poco',lot:'Bastante'}[l.night_snack]||(l.night_snack||'—'), cls:{no:'good',little:'neutral',lot:'bad'}[l.night_snack]||'neutral'},
+    {label:'Arroz/harinas extra', val:{no:'No',moderate:'Moderado',yes:'Sí'}[l.excess_carbs]||(l.excess_carbs||'—'), cls:{no:'good',moderate:'neutral',yes:'bad'}[l.excess_carbs]||'neutral'},
+    {label:'Comió fuera', val:l.ate_out==='yes'?(l.ate_out_desc||'Sí'):'No', cls:l.ate_out==='yes'?'bad':'good'},
     {label:'Caminata', val:l.walk_yday==='yes'?(l.walk_duration||'?')+'min '+( l.walk_type||''):'No', cls:l.walk_yday==='yes'?'good':'neutral'},
     {label:'kcal IN total', val:(score.kcal_in_total||'—')+' kcal', cls:'neutral'},
     {label:'kcal OUT total', val:(score.kcal_out_total||'—')+' kcal', cls:'good'},
@@ -5396,7 +5401,7 @@ function deleteSession(dateStr, event){
   // Update streak: recount from sessions
   recalcStreak();
 
-  showToast('🗑 Sesión eliminada');
+  showToast(' Sesión eliminada');
 
   // Refresh everything that shows sessions
   renderHomeRecent();
@@ -5485,14 +5490,14 @@ function renderWorkoutsPanel(){
     var feedCls={easy:'tag-easy',right:'tag-right',hard:'tag-hard'}[se.feedback]||'tag-right';
     var feedTxt={easy:'Muy fácil',right:'Perfecto',hard:'Muy difícil'}[se.feedback]||se.feedback||'—';
     listHtml+='<div class="home-sess-card">'
-      +'<div class="home-sess-icon" style="background:var(--surface2)">💪</div>'
+      +'<div class="home-sess-icon" style="background:var(--surface2)"></div>'
       +'<div class="home-sess-body">'
-        +'<div style="display:flex;align-items:flex-start;gap:6px">'        +'<div class="home-sess-title" style="flex:1">'+(se.title||'Sesión')+'</div>'        +'<button onclick="deleteSession(\''+se.date+'\',event)" style="flex-shrink:0;background:none;border:none;color:var(--text3);font-size:15px;cursor:pointer;padding:2px 4px;opacity:.6" title="Eliminar sesión">🗑</button>'        +'</div>'
+        +'<div style="display:flex;align-items:flex-start;gap:6px">'        +'<div class="home-sess-title" style="flex:1">'+(se.title||'Sesión')+'</div>'        +'<button onclick="deleteSession(\''+se.date+'\',event)" style="flex-shrink:0;background:none;border:none;color:var(--text3);font-size:15px;cursor:pointer;padding:2px 4px;opacity:.6" title="Eliminar sesión"></button>'        +'</div>'
         +'<div class="home-sess-meta">'+dateStr+' · '+(se.duration||0)+' min · '+(se.exercises||0)+' ejercicios</div>'
         +'<div class="home-sess-tags">'
           +(se.focusArea?'<span class="home-sess-tag tag-focus">'+(se.focusArea)+'</span>':'')
           +'<span class="home-sess-tag '+feedCls+'">'+feedTxt+'</span>'
-          +(se.resistance?'<span class="home-sess-tag tag-focus">😤 '+se.resistance+'/10</span>':'')
+          +(se.resistance?'<span class="home-sess-tag tag-focus"> '+se.resistance+'/10</span>':'')
         +'</div>'
       +'</div>'
       +'<div class="home-sess-right"><div class="home-sess-kcal">'+(se.kcal||0)+'</div><div class="home-sess-kcal-lbl">kcal</div></div>'
@@ -5544,7 +5549,7 @@ function renderProgressPanel(){
   var subParts=[];
   if(pct>0) subParts.push('Has completado el '+pct+'% de tu camino.');
   if(ratePerWeek>0) subParts.push('A este ritmo llegarás a tu meta en ~'+projDays+'.');
-  if(bmi>=30) subParts.push('Cuando llegues a 75kg tu IMC será '+calcBMI(75,profile.height||170).toFixed(1)+' (Peso normal ✅).');
+  if(bmi>=30) subParts.push('Cuando llegues a 75kg tu IMC será '+calcBMI(75,profile.height||170).toFixed(1)+' (Peso normal).');
   setEl('prog-sub', subParts.join(' ')||'Registra tu peso mensualmente para ver proyecciones.');
 
   // Weight timeline
@@ -5608,7 +5613,7 @@ function renderBadgesPanel(){
   store('profile',profile);
 
   // Level
-  var lvlTitle=profile.level==='intermediate'?'Intermedio 💪':'Principiante 🌱';
+  var lvlTitle=profile.level==='intermediate'?'Intermedio':'Principiante';
   var sessCount=profile.totalSessions||0;
   var nextMilestone=sessCount<7?7:sessCount<20?20:sessCount<50?50:100;
   setEl('badge-level-title',lvlTitle);
@@ -5623,7 +5628,7 @@ function renderBadgesPanel(){
       +'<div class="badge-icon">'+b.icon+'</div>'
       +'<div class="badge-name">'+b.name+'</div>'
       +'<div class="badge-desc">'+b.desc+'</div>'
-      +'<div class="badge-earned-date">✅ Ganada</div>'
+      +'<div class="badge-earned-date"> Ganada</div>'
       +'</div>';
   });
   setElHtml('earned-badges-grid',earnedHtml);
@@ -5721,11 +5726,11 @@ function renderStreakWidget(){
   var cont=document.getElementById('streak-widget');
   if(!cont) return;
   var streak=profile.streak||0;
-  cont.innerHTML='<div class="sw-fire">'+(streak>=7?'🔥🔥':streak>=3?'🔥':'⚡')+'</div>'
+  cont.innerHTML='<div class="sw-fire">'+(streak>=7?'':streak>=3?'':'')+'</div>'
     +'<div class="sw-info">'
       +'<div class="sw-streak">'+streak+'</div>'
       +'<div class="sw-lbl">días de racha activa</div>'
-      +'<div class="sw-best">'+(streak>=3?'¡Sigue así!':'Completa 3 días para activar la racha 🔥')+'</div>'
+      +'<div class="sw-best">'+(streak>=3?'¡Sigue así!':'Completa 3 días para activar la racha')+'</div>'
     +'</div>'
     +'<button class="btn btn-sm btn-ghost" onclick="navTo(\'stats\');switchStatsTab(\'badges\')">Ver insignias</button>';
 }
@@ -5748,11 +5753,11 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
   </div>
   <div class="prof-scroll">
     <div class="prof-header">
-      <div class="prof-avatar">💪</div>
+      <div class="prof-avatar"></div>
       <div>
         <div class="prof-name" id="prof-name">—</div>
         <div class="prof-since" id="prof-since">Miembro desde hoy</div>
-        <div class="prof-tier tier-beginner" id="prof-tier">🌱 Principiante</div>
+        <div class="prof-tier tier-beginner" id="prof-tier"> Principiante</div>
       </div>
     </div>
     <div class="prof-section">
@@ -5769,7 +5774,7 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
       <div class="prof-row"><span class="prof-row-label">Para llegar al objetivo</span><span class="prof-row-val" id="prof-to-goal">—</span></div>
     </div>
     <div class="prof-section">
-      <div class="prof-section-title">📅 Plan semanal de entreno</div>
+      <div class="prof-section-title"> Plan semanal de entreno</div>
       <div style="padding-bottom:16px">
         <div style="font-size:13px;color:var(--text2);margin-bottom:10px">¿Qué días entrenas normalmente?</div>
         <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:12px">
@@ -5783,17 +5788,17 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
         </div>
         <button class="btn btn-secondary" style="width:100%;padding:12px" onclick="saveProfWorkoutDays()">Guardar días</button>
       </div>
-      <div class="prof-section-title">💾 Datos & Backup</div>
+      <div class="prof-section-title"> Datos & Backup</div>
       <div style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px">
         <button class="btn btn-secondary" style="width:100%;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px" onclick="exportData()">
-          <span style="font-size:18px">📤</span>
+          <span style="font-size:18px"></span>
           <div style="text-align:left">
             <div style="font-weight:700;font-size:14px">Exportar mis datos</div>
             <div style="font-size:11px;color:var(--text3);margin-top:1px">Descarga un backup de todo tu historial</div>
           </div>
         </button>
         <button class="btn btn-secondary" style="width:100%;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px" onclick="document.getElementById('import-file-input').click()">
-          <span style="font-size:18px">📥</span>
+          <span style="font-size:18px"></span>
           <div style="text-align:left">
             <div style="font-weight:700;font-size:14px">Importar / Restaurar</div>
             <div style="font-size:11px;color:var(--text3);margin-top:1px">Restaura desde un backup anterior</div>
@@ -5805,16 +5810,16 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
           Úsalo para transferir datos entre dispositivos.
         </div>
       </div>
-      <div class="prof-section-title">⚙️ Configuración API</div>
+      <div class="prof-section-title"> Configuración API</div>
       <div style="font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.5">Clave API de Anthropic (Claude) — necesaria para generar workouts con IA.</div>
       <input type="password" class="prof-apikey-input" id="prof-apikey-input" placeholder="sk-ant-..." oninput="saveApiKey()">
       <button class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%" onclick="testApiKey()">Verificar clave API</button>
-      <div class="prof-section-title" style="margin-top:18px">🔄 Actualizaciones</div>
+      <div class="prof-section-title" style="margin-top:18px"> Actualizaciones</div>
       <div style="font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.5">
         Versión instalada: <strong id="app-version">—</strong>
       </div>
       <button class="btn btn-secondary" style="width:100%;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px" onclick="checkForUpdate()">
-        <span style="font-size:18px">🔄</span>
+        <span style="font-size:18px"></span>
         <div style="text-align:left">
           <div style="font-weight:700;font-size:14px">Buscar actualizaciones</div>
           <div style="font-size:11px;color:var(--text3);margin-top:1px">Descarga e instala la última versión</div>
@@ -5822,15 +5827,15 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
       </button>
     </div>
     <div class="prof-section" style="display:flex;flex-direction:column;gap:10px">
-      <button class="btn btn-ghost btn-lg" onclick="showWeightModal()">📊 Registrar peso hoy</button>
-      <button class="btn btn-danger btn-lg" onclick="resetApp()">🗑 Reiniciar aplicación</button>
-      <button class="btn btn-ghost btn-lg" style="border-color:var(--amber);color:var(--amber)" onclick="showDevPanel()">🛠 Borrar datos de prueba</button>
+      <button class="btn btn-ghost btn-lg" onclick="showWeightModal()"> Registrar peso hoy</button>
+      <button class="btn btn-danger btn-lg" onclick="resetApp()"> Reiniciar aplicación</button>
+      <button class="btn btn-ghost btn-lg" style="border-color:var(--amber);color:var(--amber)" onclick="showDevPanel()"> Borrar datos de prueba</button>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" id="navP-home" onclick="navTo('home')"><div class="nav-icon">🏠</div><div class="nav-lbl">Inicio</div></button>
-    <button class="nav-item" id="navP-stats" onclick="navTo('stats')"><div class="nav-icon">📊</div><div class="nav-lbl">Stats</div></button>
-    <button class="nav-item active" id="navP-profile" onclick="navTo('profile')"><div class="nav-icon">👤</div><div class="nav-lbl">Perfil</div></button>
+    <button class="nav-item" id="navP-home" onclick="navTo('home')"><div class="nav-icon"></div><div class="nav-lbl">Inicio</div></button>
+    <button class="nav-item" id="navP-stats" onclick="navTo('stats')"><div class="nav-icon"></div><div class="nav-lbl">Stats</div></button>
+    <button class="nav-item active" id="navP-profile" onclick="navTo('profile')"><div class="nav-icon"></div><div class="nav-lbl">Perfil</div></button>
   </div>
 </div>
 <!-- ══════════════════════════════════════════════════════ WORKOUT PICKER -->
@@ -5844,9 +5849,9 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
   </div>
   <div id="picker-prefs-row" style="padding:8px 16px;display:flex;gap:6px;flex-shrink:0;align-items:center;border-bottom:1px solid var(--border)">
     <span style="font-size:12px;color:var(--text3);margin-right:4px">Hoy:</span>
-    <div class="wq-chip" id="int-easy" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('intensity','easy','int-easy','int-med','int-hard')"><div style="font-size:14px">😊</div><div style="font-size:10px;font-weight:700">Suave</div></div>
-    <div class="wq-chip selected" id="int-med" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('intensity','medium','int-easy','int-med','int-hard')"><div style="font-size:14px">💪</div><div style="font-size:10px;font-weight:700">Normal</div></div>
-    <div class="wq-chip" id="int-hard" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('intensity','hard','int-easy','int-med','int-hard')"><div style="font-size:14px">🔥</div><div style="font-size:10px;font-weight:700">Intenso</div></div>
+    <div class="wq-chip" id="int-easy" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('intensity','easy','int-easy','int-med','int-hard')"><div style="font-size:14px"></div><div style="font-size:10px;font-weight:700">Suave</div></div>
+    <div class="wq-chip selected" id="int-med" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('intensity','medium','int-easy','int-med','int-hard')"><div style="font-size:14px"></div><div style="font-size:10px;font-weight:700">Normal</div></div>
+    <div class="wq-chip" id="int-hard" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('intensity','hard','int-easy','int-med','int-hard')"><div style="font-size:14px"></div><div style="font-size:10px;font-weight:700">Intenso</div></div>
     <span style="font-size:12px;color:var(--text3);margin:0 4px">·</span>
     <div class="wq-chip" id="time-20" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('time',20,'time-20','time-30','time-45','time-60')"><div style="font-size:10px;font-weight:700">20m</div></div>
     <div class="wq-chip selected" id="time-30" style="flex:1;padding:6px 4px;min-width:0" onclick="setPickerPref('time',30,'time-20','time-30','time-45','time-60')"><div style="font-size:10px;font-weight:700">30m</div></div>
@@ -5864,10 +5869,10 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
 <!-- WIZARD DONE MODAL -->
 <div class="weight-modal" id="wizard-done-modal">
   <div class="weight-modal-card">
-    <div class="wm-title">✅ Ya hiciste el check-in hoy</div>
+    <div class="wm-title"> Ya hiciste el check-in hoy</div>
     <div class="wm-sub">¿Qué quieres hacer?</div>
-    <button class="btn btn-primary btn-lg" onclick="closWizardDoneAndGenerate()">🤖 Generar workouts de nuevo</button>
-    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="reopenWizard()">✏️ Editar check-in de hoy</button>
+    <button class="btn btn-primary btn-lg" onclick="closWizardDoneAndGenerate()"> Generar workouts de nuevo</button>
+    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="reopenWizard()"> Editar check-in de hoy</button>
     <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="closeWizardDoneModal()">Cancelar</button>
   </div>
 </div>
@@ -5876,13 +5881,13 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
 <!-- DEV PANEL -->
 <div class="weight-modal" id="dev-panel-modal">
   <div class="weight-modal-card">
-    <div class="wm-title">🛠 Panel de desarrollo</div>
+    <div class="wm-title"> Panel de desarrollo</div>
     <div class="wm-sub">Borra datos de prueba sin afectar el perfil principal.</div>
-    <button class="btn btn-ghost btn-lg" onclick="devClearToday()">🗑 Borrar check-in de HOY</button>
-    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="devClearWorkouts()">🗑 Borrar workouts generados hoy</button>
-    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="devClearAllLogs()">🗑 Borrar TODOS los check-ins</button>
-    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="devClearSessions()">🗑 Borrar TODAS las sesiones de workout</button>
-    <button class="btn btn-ghost btn-lg" style="margin-top:8px;border-color:var(--accent);color:var(--accent)" onclick="devShowData()">👁 Ver datos en consola</button>
+    <button class="btn btn-ghost btn-lg" onclick="devClearToday()"> Borrar check-in de HOY</button>
+    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="devClearWorkouts()"> Borrar workouts generados hoy</button>
+    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="devClearAllLogs()"> Borrar TODOS los check-ins</button>
+    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="devClearSessions()"> Borrar TODAS las sesiones de workout</button>
+    <button class="btn btn-ghost btn-lg" style="margin-top:8px;border-color:var(--accent);color:var(--accent)" onclick="devShowData()"> Ver datos en consola</button>
     <button class="btn btn-primary btn-lg" style="margin-top:12px" onclick="document.getElementById('dev-panel-modal').classList.remove('active')">Cerrar</button>
   </div>
 </div>
@@ -5901,10 +5906,10 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
   </div>
   <div class="wsumm-bottom">
     <button class="wsumm-create-btn" id="summ-gen-btn" onclick="startGenFromSummary()">
-      🤖 Crear rutinas para hoy
+      Crear rutinas para hoy
     </button>
     <button class="wsumm-edit-btn" id="summ-calc-btn" onclick="calcYesterdayStats()" style="border-color:var(--accent);color:var(--accent2)">
-      📊 Calcular estadísticas de ayer primero
+      Calcular estadísticas de ayer primero
     </button>
     <button class="wsumm-edit-btn" onclick="goBackToWizard()">
       ← Corregir algo en el check-in
@@ -5916,19 +5921,19 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
 <!-- RESUME WORKOUT MODAL -->
 <div class="weight-mo<div class="weight-modal" id="resume-modal">
   <div class="weight-modal-card">
-    <div class="wm-title">💪 Workout del día</div>
+    <div class="wm-title"> Workout del día</div>
     <div class="wm-sub" id="resume-modal-title">Tu workout</div>
     <button class="btn btn-primary btn-lg" onclick="closeResumeAndStart()">
       ▶ Ver detalles y comenzar
     </button>
     <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="closeResumeAndPicker()">
-      📋 Ver las 3 opciones de hoy
+      Ver las 3 opciones de hoy
     </button>
     <button class="btn btn-ghost btn-lg" style="margin-top:8px;color:var(--green);border-color:var(--green)" onclick="markWorkoutComplete()">
-      ✅ Marcar como completado
+      Marcar como completado
     </button>
     <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="closeResumeAndRegenerate()">
-      🔄 Regenerar workouts
+      Regenerar workouts
     </button>
     <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="document.getElementById('resume-modal').classList.remove('active')">
       Cancelar
@@ -5946,7 +5951,7 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
       background:var(--surface);border:1px solid var(--border);
       border-radius:var(--rxs);cursor:pointer;
     ">
-      <div id="nu-icon" style="font-size:16px;opacity:.6">⏭</div>
+      <div id="nu-icon" style="font-size:16px;opacity:.6"></div>
       <div style="flex:1;min-width:0">
         <div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);font-weight:700">A continuación</div>
         <div id="nu-name" style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
@@ -5955,29 +5960,29 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
     </div>
     <div class="ctrl-main-row">
       <button class="ctrl-pause-btn" id="pause-btn" onclick="togglePause()">
-        <span id="pause-icon">⏸</span>
+        <span id="pause-icon"></span>
         <span id="pause-label">Pausar</span>
       </button>
     </div>
     <div class="ctrl-sec-row">
       <button class="ctrl-sec-btn" onclick="repeatSet()">
-        <span class="icon">🔄</span> Repetir serie
+        <span class="icon"></span> Repetir serie
       </button>
       <button class="ctrl-sec-btn" onclick="skipToNext()">
-        Saltar <span class="icon">⏭</span>
+        Saltar <span class="icon"></span>
       </button>
       <button class="ctrl-sec-btn" onclick="addRestTime(30)">
         <span class="icon">+30s</span> descanso
       </button>
       <button class="ctrl-sec-btn" onclick="confirmCompleteWorkout()" style="color:var(--green)">
-        <span class="icon">✅</span> Completar
+        <span class="icon"></span> Completar
       </button>
     </div>
   </div>
 
   <!-- REST OVERLAY -->
   <div class="rest-screen" id="rest-screen">
-    <div class="rest-badge">⏸ DESCANSO</div>
+    <div class="rest-badge"> DESCANSO</div>
     <div class="rest-next-label">Siguiente ejercicio</div>
     <div class="rest-next-name" id="rest-next-name">—</div>
     <div class="rest-ring-wrap">
@@ -6001,7 +6006,7 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
 <!-- WEEKLY PLANNING MODAL -->
 <div class="weight-modal" id="week-plan-modal">
   <div class="weight-modal-card" style="max-width:420px">
-    <div class="wm-title">📅 Nueva semana</div>
+    <div class="wm-title"> Nueva semana</div>
     <div class="wm-sub">Es hora de planificar tus entrenamientos de esta semana. ¿Qué días vas a entrenar?</div>
     <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:16px 0">
       <div class="wday-btn" id="wday-0" onclick="toggleWday(0)">Dom</div>
@@ -6013,8 +6018,8 @@ function setElHtml(id,html){ var el=document.getElementById(id); if(el)el.innerH
       <div class="wday-btn" id="wday-6" onclick="toggleWday(6)">Sáb</div>
     </div>
     <div style="font-size:13px;color:var(--text3);text-align:center;margin-bottom:16px" id="wday-count">4 días seleccionados</div>
-    <button class="btn btn-primary btn-lg" onclick="saveWeekPlan()">✅ Confirmar plan</button>
-    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="applyLastWeekPlan()">🔄 Usar plan de la semana pasada</button>
+    <button class="btn btn-primary btn-lg" onclick="saveWeekPlan()"> Confirmar plan</button>
+    <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="applyLastWeekPlan()"> Usar plan de la semana pasada</button>
     <button class="btn btn-ghost btn-lg" style="margin-top:8px" onclick="document.getElementById('week-plan-modal').classList.remove('active')">Más tarde</button>
   </div>
 </div>
@@ -6040,8 +6045,21 @@ var OB_ICONS = {
   sun:'<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path>',
   lock:'<rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path>',
   check:'<polyline points="20 6 9 17 4 12"></polyline>',
-  rocket:'<path d="M5 15c-1 1-2 4-2 4s3-1 4-2M9 11a8 8 0 0 1 11-7 8 8 0 0 1-7 11l-2 2-4-4z"></path><circle cx="14.5" cy="9.5" r="1.5"></circle>'
+  rocket:'<path d="M5 15c-1 1-2 4-2 4s3-1 4-2M9 11a8 8 0 0 1 11-7 8 8 0 0 1-7 11l-2 2-4-4z"></path><circle cx="14.5" cy="9.5" r="1.5"></circle>',
+  home:'<path d="M3 11l9-8 9 8"></path><path d="M5 10v10h5v-6h4v6h5V10"></path>',
+  chart:'<path d="M4 20V10"></path><path d="M10 20V4"></path><path d="M16 20v-7"></path><path d="M2 20h20"></path>'
 };
+function setNavIcons(){
+  var items = document.querySelectorAll('.nav-item');
+  for(var i=0;i<items.length;i++){
+    var ic = items[i].querySelector('.nav-icon'); if(!ic) continue;
+    var id = items[i].id || '';
+    var name = id.indexOf('home')>=0 ? 'home' : id.indexOf('stats')>=0 ? 'chart' : id.indexOf('profile')>=0 ? 'user' : '';
+    if(name) ic.innerHTML = icon(name,22);
+  }
+  var av = document.querySelector('.prof-avatar'); if(av && !av.querySelector('svg')) av.innerHTML = icon('user',34);
+  var fb = document.getElementById('ex-fallback'); if(fb && !fb.querySelector('svg')) fb.innerHTML = icon('dumbbell',40);
+}
 function icon(name, size){ size=size||24; return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+(OB_ICONS[name]||'')+'</svg>'; }
 
 // Strip emojis / pictographs from any string (safety net for AI output)
@@ -6246,7 +6264,7 @@ function obClearData(){
 </script>
 <script>
 // ─── APP VERSION + AUTO-UPDATE ───
-var APP_VERSION = 'v4';
+var APP_VERSION = 'v5';
 (function(){ var el = document.getElementById('app-version'); if(el) el.textContent = APP_VERSION; })();
 
 var swRegistration = null;
@@ -6268,7 +6286,7 @@ if('serviceWorker' in navigator){
           if(!nw) return;
           nw.addEventListener('statechange', function(){
             if(nw.state === 'installed' && navigator.serviceWorker.controller){
-              if(typeof showToast === 'function') showToast('✨ Nueva versión disponible, actualizando...');
+              if(typeof showToast === 'function') showToast(' Nueva versión disponible, actualizando...');
             }
           });
         });
