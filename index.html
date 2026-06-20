@@ -41,12 +41,12 @@ body{
 
 /* ═══════════════════════════════════════ SCREENS */
 .screen{
-  display:none;position:fixed;inset:0;
+  display:none;position:fixed;inset:0;pointer-events:none;
   flex-direction:column;overflow:hidden;
   opacity:0;transition:opacity .3s ease,transform .3s cubic-bezier(.4,0,.2,1);
   transform:translateY(16px);
 }
-.screen.active{display:flex;opacity:1;transform:translateY(0)}
+.screen.active{display:flex;opacity:1;transform:translateY(0);pointer-events:auto}
 .screen.exit{opacity:0;transform:translateY(-16px);pointer-events:none}
 
 /* ═══════════════════════════════════════ PIN SCREEN */
@@ -2219,20 +2219,24 @@ var playerFeedback = null;
 // ═══════════════════════════════════════════════════════════════
 var currentScreen = '';
 function showScreen(id){
+  var next = document.getElementById('screen-'+id);
+  if(!next){ console.error('Screen not found: screen-'+id); return; }
   var screens = document.querySelectorAll('.screen');
   screens.forEach(function(s){
+    if(s===next) return;
     if(s.classList.contains('active')){
       s.classList.add('exit');
-      setTimeout(function(){ s.classList.remove('active','exit'); }, 320);
+      setTimeout(function(){ s.classList.remove('active','exit'); s.style.display='none'; }, 320);
+    } else {
+      s.classList.remove('active','exit');
+      s.style.display='none';
     }
   });
   setTimeout(function(){
-    var next = document.getElementById('screen-'+id);
-    if(!next){ console.error('Screen not found: screen-'+id); return; }
+    next.classList.remove('exit');
     next.style.display='flex';
     requestAnimationFrame(function(){ next.classList.add('active'); });
     currentScreen = id;
-    // Reset PIN state when showing pin screen
     if(id==='pin'){
       pinEntry='';
       if(typeof updatePinDots==='function') updatePinDots();
@@ -6265,7 +6269,7 @@ function obClearData(){
 </script>
 <script>
 // ─── APP VERSION + AUTO-UPDATE ───
-var APP_VERSION = 'v6';
+var APP_VERSION = 'v7';
 (function(){ var el = document.getElementById('app-version'); if(el) el.textContent = APP_VERSION; })();
 
 var swRegistration = null;
