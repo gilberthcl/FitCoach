@@ -1308,6 +1308,7 @@ body{
 .wc-icon:empty,.sg-icon:empty,.today-meta-chip:empty,.fb-opt-icon:empty{display:none}
 .nav-icon svg,.prof-avatar svg{display:block}
 .prof-avatar svg{color:var(--accent)}
+#screen-onboarding{background:var(--bg);z-index:700}
 </style>
 <div id="screen-onboarding" class="screen" style="justify-content:flex-start">
   <div class="ob-top">
@@ -6264,7 +6265,7 @@ function obClearData(){
 </script>
 <script>
 // ─── APP VERSION + AUTO-UPDATE ───
-var APP_VERSION = 'v5';
+var APP_VERSION = 'v6';
 (function(){ var el = document.getElementById('app-version'); if(el) el.textContent = APP_VERSION; })();
 
 var swRegistration = null;
